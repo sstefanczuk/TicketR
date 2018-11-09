@@ -25,7 +25,11 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/lib/jquery-1.9.1/js/jquery.js",
+              "src/lib/bootstrap-2.3.2/js/bootstrap.min.js",
+              "src/lib/eterna-template/js/modernizr.custom.js"
+            ]
           },
           "configurations": {
             "production": {

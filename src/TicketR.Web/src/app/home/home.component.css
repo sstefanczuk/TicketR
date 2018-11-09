@@ -1,0 +1,26 @@
+.event-box {
+    /* border: 1px solid #333;# */
+    box-shadow: 0 1px 3px #999;
+    margin: 5px !important;
+  }
+  
+  .event-box .details {
+    text-align: center;
+    padding: 10px 0 10px 0;
+  }
+  
+  .event-box .details .title {
+    color: #353535;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+  }
+  
+  .event-box .details p {
+    font-size: 14px;
+    margin: 0 0 5px 0;
+  }
+  
+  .event-box .details span {
+    margin-left: 5px;
+  }

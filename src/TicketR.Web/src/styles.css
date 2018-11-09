@@ -1,1 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import './lib/bootstrap-2.3.2/css/bootstrap.css';
+@import './lib/bootstrap-2.3.2/css/bootstrap-responsive.css';
+@import './lib/eterna-template/css/style.css';
+@import './lib/eterna-template/color/default.css';
