@@ -1,0 +1,20 @@
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+WORKDIR /app
+EXPOSE 5000
+
+FROM microsoft/dotnet:2.1-sdk AS build
+WORKDIR /src
+COPY TicketR.Services.Events/TicketR.Services.Events.csproj TicketR.Services.Events/
+COPY ../TicketR.Common/TicketR.Common.csproj ../TicketR.Common/
+RUN dotnet restore TicketR.Services.Events/TicketR.Services.Events.csproj
+COPY . .
+WORKDIR /src/TicketR.Services.Events
+RUN dotnet build TicketR.Services.Events.csproj -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish TicketR.Services.Events.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "TicketR.Services.Events.dll"]

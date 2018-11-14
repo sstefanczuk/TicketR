@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  ticketr.api:
+    image: ${DOCKER_REGISTRY}ticketrapi
+    build:
+      context: .
+      dockerfile: TicketR.Api/Dockerfile
+
+  ticketr.services.events:
+    image: ${DOCKER_REGISTRY}ticketrservicesevents
+    build:
+      context: .
+      dockerfile: TicketR.Services.Events/Dockerfile
+
