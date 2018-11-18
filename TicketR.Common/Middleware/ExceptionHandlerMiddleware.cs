@@ -11,9 +11,9 @@ namespace TicketR.Common.Middleware
     public class ExceptionHandlerMiddleware
     {
         private readonly RequestDelegate request;
-        private readonly ILogger logger;
+        private readonly ILogger<ExceptionHandlerMiddleware> logger;
 
-        public ExceptionHandlerMiddleware(RequestDelegate request, ILogger logger)
+        public ExceptionHandlerMiddleware(RequestDelegate request, ILogger<ExceptionHandlerMiddleware> logger)
         {
             this.request = request;
             this.logger = logger;
