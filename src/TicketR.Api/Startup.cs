@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using TicketR.Api.Services;
 using TicketR.Common.Middleware;
+using TicketR.Common.RestEase;
 
 namespace TicketR.Api
 {
@@ -26,6 +28,7 @@ namespace TicketR.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.RegisterServiceForwarder<IEventsService>("events-service");
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

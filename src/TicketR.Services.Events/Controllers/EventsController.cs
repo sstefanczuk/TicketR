@@ -10,8 +10,8 @@ namespace TicketR.Services.Events.Controllers
     [ApiController]
     public class EventsController : ControllerBase
     {
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
+        [HttpGet]
+        public IActionResult Get()
         {
             return Ok(new List<string>
                 {
