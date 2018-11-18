@@ -23,8 +23,8 @@ namespace TicketR.Api.Controllers
         public async Task<IActionResult> GetAsync()
         {
             var ht = new HttpClient();
-            //var x = await ht.GetAsync("http://localhost:5001/api/events");
-            var d = await this.eventsService.GetEventsAsync();
+            var x = await ht.GetAsync("http://localhost:5001/api/events");
+            //var d = await this.eventsService.GetEventsAsync();
             return Ok(new
             {
                 DateTime = DateTime.Now.ToString("r"),
