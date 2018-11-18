@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Serilog;
 using Serilog.Events;
-using TicketR.Common.Logger;
 
 namespace TicketR.Services.Events
 {
@@ -17,19 +16,29 @@ namespace TicketR.Services.Events
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom
+                .Configuration(TicketR.Common.Logging.Extensions.SerologConfiguration)
+                .Enrich.FromLogContext()
+                .WriteTo.RollingFile("log-{Date}.log")
+                .CreateLogger();
+            try
+            {
+                CreateWebHostBuilder(args).Build().Run();
+            }
+            catch (Exception ex)
+            {
+                Log.Fatal(ex, "Host terminated unexpectedly");
+            }
+            finally
+            {
+                Log.CloseAndFlush();
+            }
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
-                .UseSerilog((ctx, cfg) =>
-                {
-                    cfg.ReadFrom.Configuration(ctx.Configuration)
-
-                        .MinimumLevel.Debug()
-                        .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                        .WriteTo.RollingFile("Web-{Date}.log");
-                });
+                .UseSerilog();
     }
 }
