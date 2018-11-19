@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
 namespace TicketR.Services.Events.Controllers
@@ -11,14 +8,11 @@ namespace TicketR.Services.Events.Controllers
     public class EventsController : ControllerBase
     {
         [HttpGet]
-        public IActionResult Get()
-        {
-            return Ok(new List<string>
+        public IActionResult GetEvents()
+            => Ok(new List<string>
                 {
                     "test 1",
                     "test 2"
-                }
-            );
-        }
+                });
     }
 }

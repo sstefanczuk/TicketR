@@ -34,7 +34,6 @@ namespace TicketR.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
-
             app.UseMvc();
         }
     }

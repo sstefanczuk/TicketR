@@ -22,14 +22,6 @@ namespace TicketR.Common.RestEase
         private static void ConfigureDefaultClient(IServiceCollection services, string clientName,
             string serviceName, RestEaseOptions options)
         {
-            var t = options.Services.SingleOrDefault(s => s.Name.Equals(serviceName,
-    StringComparison.InvariantCultureIgnoreCase));
-            var test = new UriBuilder
-            {
-                Scheme = "http",
-                Host = t.Host,
-                Port = t.Port
-            }.Uri;
             services.AddHttpClient(clientName, client =>
             {
                 var service = options.Services.SingleOrDefault(s => s.Name.Equals(serviceName,
@@ -41,7 +33,7 @@ namespace TicketR.Common.RestEase
 
                 client.BaseAddress = new UriBuilder
                 {
-                    Scheme = "http",
+                    Scheme = service.Scheme,
                     Host = service.Host,
                     Port = service.Port
                 }.Uri;

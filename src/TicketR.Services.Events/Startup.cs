@@ -26,6 +26,7 @@ namespace TicketR.Services.Events
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
+
             app.UseMvc();
         }
     }

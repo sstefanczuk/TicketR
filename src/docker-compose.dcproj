@@ -5,13 +5,10 @@
     <DockerTargetOS>Linux</DockerTargetOS>
     <ProjectGuid>18e61efb-9b0b-4a49-9052-5ac35543c7ca</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
-    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/values</DockerServiceUrl>
+    <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/api/heartbeat</DockerServiceUrl>
     <DockerServiceName>ticketr.api</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="docker-compose.override.yml">
-      <DependentUpon>docker-compose.yml</DependentUpon>
-    </None>
     <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>

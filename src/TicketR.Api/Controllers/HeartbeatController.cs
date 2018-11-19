@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TicketR.Api.Services;
+using TicketR.Common.Models;
 
 namespace TicketR.Api.Controllers
 {
@@ -20,16 +21,11 @@ namespace TicketR.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAsync()
-        {
-            var ht = new HttpClient();
-            var x = await ht.GetAsync("http://localhost:5001/api/events");
-            //var d = await this.eventsService.GetEventsAsync();
-            return Ok(new
+        public async Task<IActionResult> ServicesCheck()
+            => Ok(new
             {
-                DateTime = DateTime.Now.ToString("r"),
-                Message = "Ok"
+                EventsService = await eventsService.HeartbeatAsync()
             });
-        }
+
     }
 }
