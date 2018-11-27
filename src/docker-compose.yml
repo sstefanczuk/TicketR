@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  ticketr.api:
+    image: ${DOCKER_REGISTRY}ticketrapi
+    build:
+      context: .
+      dockerfile: TicketR.Api/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5000
+    ports:
+      - "5000:5000"
+
+  ticketr.services.events:
+    image: ${DOCKER_REGISTRY}ticketrservicesevents
+    build:
+      context: .
+      dockerfile: TicketR.Services.Events/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5001
+    ports:
+      - "5001:5001"
