@@ -21,5 +21,9 @@ namespace TicketR.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetEvents()
             => Ok(await eventsService.GetEventsAsync());
+
+        [HttpGet, Route("{id:int}")]
+        public async Task<IActionResult> GetEvent(int id)
+            => Ok(await eventsService.GetEventAsync(id));
     }
 }
