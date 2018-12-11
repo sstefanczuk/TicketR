@@ -1,4 +1,11 @@
 export class EventDetails {
+
+    constructor()
+    {
+        this.location = new Location();
+        this.ticketsPools = new Array<TicketsPool>();
+    }
+
     id: number;
     title: string;
     subtitle: string;
