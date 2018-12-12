@@ -14,17 +14,20 @@ namespace TicketR.Api.Controllers
     public class HeartbeatController : ControllerBase
     {
         private readonly IEventsService eventsService;
+        private readonly IAccountService accountService;
 
-        public HeartbeatController(IEventsService eventsService)
+        public HeartbeatController(IEventsService eventsService, IAccountService accountService)
         {
             this.eventsService = eventsService;
+            this.accountService = accountService;
         }
 
         [HttpGet]
         public async Task<IActionResult> ServicesCheck()
             => Ok(new
             {
-                EventsService = await eventsService.HeartbeatAsync()
+                EventsService = await eventsService.HeartbeatAsync(),
+                AccountService = await accountService.HeartbeatAsync()
             });
 
     }
