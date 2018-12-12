@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
 
-namespace Ticketr.Services.Account.Controllers
+namespace TicketR.Services.Account.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

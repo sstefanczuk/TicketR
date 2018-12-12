@@ -13,6 +13,9 @@ RUN dotnet build Ticketr.Services.Account.csproj -c Release -o /app
 FROM build AS publish
 RUN dotnet publish Ticketr.Services.Account.csproj -c Release -o /app
 
+RUN chmod +x ./entrypoint.sh
+CMD /bin/bash ./entrypoint.sh
+
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .

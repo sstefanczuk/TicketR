@@ -33,3 +33,10 @@ services:
       - ASPNETCORE_URLS=http://+:5002
     ports:
       - "5002:5002"
+    depends_on:
+      - accountDb
+  accountDb:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      SA_PASSWORD: "Testing_123"
+      ACCEPT_EULA: "Y"

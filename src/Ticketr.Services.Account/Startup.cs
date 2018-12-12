@@ -5,12 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TicketR.Common.Middleware;
+using TicketR.Services.Account.Infrastructure.Data;
+using TicketR.Services.Account.Infrastructure.Extensions;
+using TicketR.Services.Account.Infrastructure.Models;
 
-namespace Ticketr.Services.Account
+namespace TicketR.Services.Account
 {
     public class Startup
     {
@@ -24,12 +29,17 @@ namespace Ticketr.Services.Account
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddIdentity(Configuration);
+            services.AddIdentity<AppUser, IdentityRole>()
+                .AddEntityFrameworkStores<AccountDbContext>()
+                .AddDefaultTokenProviders();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, AccountDbContext dbContext)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
+            var x = dbContext.Users.ToList();
         }
     }
 }

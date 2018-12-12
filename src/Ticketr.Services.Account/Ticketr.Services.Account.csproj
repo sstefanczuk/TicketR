@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Ticketr.Services.Account.Infrastructure\TicketR.Services.Account.Infrastructure.csproj" />
     <ProjectReference Include="..\TicketR.Common\TicketR.Common.csproj" />
   </ItemGroup>
 
