@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2048
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Api", "TicketR.Api\TicketR.Api.csproj", "{959544FD-828F-4637-9C5B-3F840EC55784}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Api", "TicketR.Api\TicketR.Api.csproj", "{959544FD-828F-4637-9C5B-3F840EC55784}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{18E61EFB-9B0B-4A49-9052-5AC35543C7CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Common", "TicketR.Common\TicketR.Common.csproj", "{E6B6E98C-198C-489B-B107-3123CCCA663B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Common", "TicketR.Common\TicketR.Common.csproj", "{E6B6E98C-198C-489B-B107-3123CCCA663B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Services.Events", "TicketR.Services.Events\TicketR.Services.Events.csproj", "{A5567597-9790-481B-9C82-6D98F19C4216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Services.Events", "TicketR.Services.Events\TicketR.Services.Events.csproj", "{A5567597-9790-481B-9C82-6D98F19C4216}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticketr.Services.Account", "Ticketr.Services.Account\Ticketr.Services.Account.csproj", "{79FCD4D4-8D90-405A-87BC-923D89E2062E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{A5567597-9790-481B-9C82-6D98F19C4216}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A5567597-9790-481B-9C82-6D98F19C4216}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A5567597-9790-481B-9C82-6D98F19C4216}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79FCD4D4-8D90-405A-87BC-923D89E2062E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79FCD4D4-8D90-405A-87BC-923D89E2062E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79FCD4D4-8D90-405A-87BC-923D89E2062E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79FCD4D4-8D90-405A-87BC-923D89E2062E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
