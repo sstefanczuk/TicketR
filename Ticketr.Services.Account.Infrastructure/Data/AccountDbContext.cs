@@ -12,7 +12,6 @@ namespace TicketR.Services.Account.Infrastructure.Data
         public AccountDbContext(DbContextOptions<AccountDbContext> options)
             : base(options)
         {
-            this.Database.Migrate();
         }
     }
 }

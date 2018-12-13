@@ -39,7 +39,9 @@ namespace TicketR.Services.Account
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
-            //var x = dbContext.Users.ToList();
+
+            dbContext.Database.EnsureCreated();
+            dbContext.Database.Migrate();
         }
     }
 }
