@@ -16,6 +16,11 @@ namespace TicketR.Services.Account.Infrastructure.Extensions
         public static void AddIdentity(this IServiceCollection services, IConfiguration configuration)
         {
             var x = configuration.GetConnectionString("AccountConnection");
+
+            var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
+            var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD") ?? "Testing123";
+            var connString = $"Data Source={hostname};Initial Catalog=KontenaAspnetCore;User ID=sa;Password={password};";
+
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<UserManager<AppUser>>();
             services.AddDbContext<AccountDbContext>(o => o.UseSqlServer(configuration.GetConnectionString("AccountConnection")));

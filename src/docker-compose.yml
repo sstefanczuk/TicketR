@@ -23,6 +23,14 @@ services:
     ports:
       - "5001:5001"
 
+  accountDb:
+    image: "microsoft/mssql-server-linux"
+    environment:
+      SA_PASSWORD: "Testing_123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "11433:1433"
+
   ticketr.services.account:
     image: ${DOCKER_REGISTRY}ticketrservicesaccount
     build:
@@ -35,8 +43,3 @@ services:
       - "5002:5002"
     depends_on:
       - accountDb
-  accountDb:
-    image: "microsoft/mssql-server-linux"
-    environment:
-      SA_PASSWORD: "Testing_123"
-      ACCEPT_EULA: "Y"
