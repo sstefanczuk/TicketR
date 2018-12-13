@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TicketR.Api.Dto;
 using TicketR.Common.Models;
 
 namespace TicketR.Api.Services
@@ -17,5 +18,9 @@ namespace TicketR.Api.Services
         [AllowAnyStatusCode]
         [Get("api/events")]
         Task<List<string>> GetEventsAsync();
+
+        [AllowAnyStatusCode]
+        [Get("api/events/{id}")]
+        Task<EventDetails> GetEventAsync([Path] int id);
     }
 }

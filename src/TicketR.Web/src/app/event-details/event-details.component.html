@@ -1,0 +1,103 @@
+<section>
+  <div class="container">
+    <div class="row event-info-container">
+      <div class="span6">
+        <img src="{{event.imagePath}}" />
+      </div>
+      <div class="span6">
+        <h2>
+          <strong>{{event.title}}
+            <span class="colored">{{event.subtitle}}</span>
+          </strong>
+        </h2>
+        <div class="solidline"></div>
+        <div class="boxes">
+          <span class="btn btn-small">
+            <i class="icon-calendar"></i>
+            {{event.date | date:'MMM d, y, h:mm'}}
+          </span>
+          <span class="btn btn-small">
+            <i class="icon-location-arrow"></i>
+            {{event.location.city}}, {{event.location.name}}
+          </span>
+          <span class="btn btn-small">
+            <i class="icon-music"></i>
+            {{event.category}}
+          </span>
+        </div>
+        <p>{{event.description}}</p>
+      </div>
+    </div>
+
+    <div class="row horizontal-line">
+      <div class="span12">
+        <div class="solidline"></div>
+      </div>
+    </div>
+
+    <div class="row event-prices-container">
+      <h2>Prices</h2>
+      <div class="span8">
+        <table class="table table-hover">
+          <thead>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Available</th>
+            <th></th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let ticketsPool of event.ticketsPools">
+              <td>{{ticketsPool.name}}</td>
+              <td>€{{ticketsPool.price}}</td>
+              <td>{{ticketsPool.availableTickets}} / {{ticketsPool.totalTickets}}</td>
+              <td><a class="btn btn-theme btn-small">Get tickets <i class="icon-angle-right"></i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="span4">
+        <div class="info-box">
+          <div class="info-box-header">
+            <i class="icon-info icon-circled icon-bginfo"></i><span> Notice</span>
+          </div>
+          <p>
+            For this event there is <strong>a limit of {{event.ticketsPerClientLimit}} tickets per client</strong> which means that one person may
+            purchase in total not more than 5 tickets in one order or in many orders.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row event-location-container">
+      <h2>Location - <strong>{{event.location.name}}</strong></h2>
+      <div class="row">
+        <div class="span6">
+          <p>
+            {{event.location.description}}
+          </p>
+        </div>
+        <div class="span4">
+          <img src="{{event.location.imagePath}}" />
+        </div>
+        <div class="span2 contact-info">
+          <address>
+            <strong>Address</strong>
+            <br>
+            <ng-container *ngFor="let addressLine of event.location.addressLines">
+              {{addressLine}}
+              <br>
+            </ng-container>
+          </address>
+          <address>
+            <strong>Phone</strong>
+            <br>
+            {{event.location.phone}}
+          </address>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <img src="https://i.ibb.co/HKhYRrj/image.png">
+  </div>
+</section>
