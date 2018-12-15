@@ -17,7 +17,7 @@ namespace TicketR.Api.Services
 
         [AllowAnyStatusCode]
         [Get("api/events")]
-        Task<List<string>> GetEventsAsync();
+        Task<List<EventPreview>> GetEventsAsync();
 
         [AllowAnyStatusCode]
         [Get("api/events/{id}")]

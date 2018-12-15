@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="span12">
+      <ul class="portfolio-categ filter">
+        <li class="all active"><a href="#">All</a></li>
+        <li class="web"><a href="#" title="">Sports</a></li>
+        <li class="icon"><a href="#" title="">Concerts</a></li>
+        <li class="graphic"><a href="#" title="">Theater</a></li>
+      </ul>
+
+      <div class="clearfix"></div>
+      <div class="row">
+        <section id="projects">
+          <ul id="thumbs" class="grid cs-style-4 portfolio">
+
+            <li *ngFor="let eventItem of eventList" (click)="goToDetails(eventItem.id)" class="item-thumbs span3 design" data-type="icon">
+              <div class="event-box item">
+                <figure>
+                  <div><img src="{{eventItem.imagePath}}" alt="" /></div>
+                  <figcaption>
+                    <div>
+                      <span class="ticket-prices">
+                        <p class="ticket-prices-label">Tickets from</p>
+                        <p class="ticket-prices-value">${{eventItem.price}}</p>
+                      </span>
+                      <span>
+                        <a class="btn btn-rounded  btn-buy-ticket">
+                          Buy
+                          <i class="icon-angle-right"></i>
+                        </a>
+                      </span>
+                    </div>
+                  </figcaption>
+                </figure>
+                <div class="details">
+                  <h1 class="title">{{eventItem.title}}</h1>
+                  <p class="location"><i class="icon-location-arrow"></i><span>{{eventItem.location}}</span></p>
+                  <p class="date"><i class="icon-calendar"></i><span>{{eventItem.date | date:'mediumDate'}}</span></p>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
