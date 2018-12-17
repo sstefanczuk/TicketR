@@ -1,8 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { EventDetails } from '../event-details/event-details';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { EventPreview } from '../models/eventPreview';
+import { EventCategory } from '../enums/eventCategory';
 
 @Injectable({ providedIn: 'root' })
 export class EventsService {
@@ -16,7 +17,8 @@ export class EventsService {
         return this.http.get<EventDetails>(this.apiUrl + 'events/' + id);
     }
 
-    getEvents(): Observable<EventPreview[]> {
-        return this.http.get<EventPreview[]>(this.apiUrl + 'events/');
+    getEvents(category: EventCategory): Observable<EventPreview[]> {
+        const urlParams = new HttpParams().set('category', category.toString());
+        return this.http.get<EventPreview[]>(this.apiUrl + 'events', { params: urlParams });
     }
 }

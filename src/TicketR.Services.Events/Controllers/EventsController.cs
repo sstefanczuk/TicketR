@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using TicketR.Services.Events.Dto;
+using System.Linq;
+using TicketR.Common.Enums;
+using TicketR.Common.Models.Events;
 
 namespace TicketR.Services.Events.Controllers
 {
@@ -10,91 +12,108 @@ namespace TicketR.Services.Events.Controllers
     public class EventsController : ControllerBase
     {
         [HttpGet]
-        public IActionResult GetEvents()
+        public IActionResult GetEvents([FromQuery]EventCategory category)
         {
-            return Ok(new List<EventPreview>
+            var events = new List<EventPreview>
+            {
+                new EventPreview
                 {
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
-                        Location = "Tauron Arena, Cracow, PL",
-                        Title = "Metallica",
-                        Price = 99.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 2),
-                        ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
-                        Location = "PGE Narodowy, Warsaw, PL",
-                        Title = "Ed Sheeran",
-                        Price = 79.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
-                        Location = "Stadion Śląski, Chorzów, PL",
-                        Title = "Poland - Italy",
-                        Price = 49.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
-                        Location = "Tauron Arena, Cracow, PL",
-                        Title = "Metallica",
-                        Price = 99.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 2),
-                        ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
-                        Location = "PGE Narodowy, Warsaw, PL",
-                        Title = "Ed Sheeran",
-                        Price = 79.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
-                        Location = "Stadion Śląski, Chorzów, PL",
-                        Title = "Poland - Italy",
-                        Price = 49.99m,
-                    },                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
-                        Location = "Tauron Arena, Cracow, PL",
-                        Title = "Metallica",
-                        Price = 99.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 2),
-                        ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
-                        Location = "PGE Narodowy, Warsaw, PL",
-                        Title = "Ed Sheeran",
-                        Price = 79.99m,
-                    },
-                    new EventPreview
-                    {
-                        Id = 1,
-                        Date = new DateTime(2019, 1, 1),
-                        ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
-                        Location = "Stadion Śląski, Chorzów, PL",
-                        Title = "Poland - Italy",
-                        Price = 49.99m,
-                    },
-                });
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
+                    Location = "Tauron Arena, Cracow, PL",
+                    Title = "Metallica",
+                    Price = 99.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 2),
+                    ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
+                    Location = "PGE Narodowy, Warsaw, PL",
+                    Title = "Ed Sheeran",
+                    Price = 79.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
+                    Location = "Stadion Śląski, Chorzów, PL",
+                    Title = "Poland - Italy",
+                    Price = 49.99m,
+                    Category = EventCategory.Sport,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
+                    Location = "Tauron Arena, Cracow, PL",
+                    Title = "Metallica",
+                    Price = 99.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 2),
+                    ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
+                    Location = "PGE Narodowy, Warsaw, PL",
+                    Title = "Ed Sheeran",
+                    Price = 79.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
+                    Location = "Stadion Śląski, Chorzów, PL",
+                    Title = "Poland - Italy",
+                    Price = 49.99m,
+                    Category = EventCategory.Sport,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/iftwqA/metallica.png",
+                    Location = "Tauron Arena, Cracow, PL",
+                    Title = "Metallica",
+                    Price = 99.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 2),
+                    ImagePath = "https://image.ibb.co/nnZ2VA/ed-sheeran.png",
+                    Location = "PGE Narodowy, Warsaw, PL",
+                    Title = "Ed Sheeran",
+                    Price = 79.99m,
+                    Category = EventCategory.Concert,
+                },
+                new EventPreview
+                {
+                    Id = 1,
+                    Date = new DateTime(2019, 1, 1),
+                    ImagePath = "https://image.ibb.co/fx4QiV/uefa-nations-league.png",
+                    Location = "Stadion Śląski, Chorzów, PL",
+                    Title = "Poland - Italy",
+                    Price = 49.99m,
+                    Category = EventCategory.Sport,
+                },
+            }.AsQueryable();
+
+            if (category != EventCategory.Any)
+            {
+                events = events.Where(x => x.Category == category);
+            }
+
+            return Ok(events.ToList());
         }
 
         [HttpGet, Route("{id:int}")]

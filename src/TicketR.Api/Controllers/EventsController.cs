@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Api.Services;
+using TicketR.Common.Enums;
 
 namespace TicketR.Api.Controllers
 {
@@ -19,8 +20,8 @@ namespace TicketR.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEvents()
-            => Ok(await eventsService.GetEventsAsync());
+        public async Task<IActionResult> GetEvents([FromQuery]EventCategory category)
+            => Ok(await eventsService.GetEventsAsync(category));
 
         [HttpGet, Route("{id:int}")]
         public async Task<IActionResult> GetEvent(int id)

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { EventPreview } from '../models/eventPreview';
 import { EventsService } from '../http/events-service';
 import { Router } from '@angular/router';
+import { EventCategory } from '../enums/eventCategory';
 
 @Component({
   selector: 'app-event-list',
@@ -10,14 +11,19 @@ import { Router } from '@angular/router';
 })
 export class EventListComponent implements OnInit {
 
-  @Input() eventList: EventPreview[];
+  eventList: EventPreview[] = [];
+  categoryFilter: EventCategory = EventCategory.Any;
 
   constructor(private eventsService: EventsService,
     private router: Router) { }
 
   ngOnInit() {
+    this.getEvents();
+  }
+
+  getEvents() {
     this.eventsService
-      .getEvents()
+      .getEvents(this.categoryFilter)
       .subscribe(data => {
         this.eventList = data;
       });
@@ -25,5 +31,14 @@ export class EventListComponent implements OnInit {
 
   goToDetails(eventId: number) {
       this.router.navigate([`/event/${eventId}`]);
+  }
+
+  selectCategory(eventCategory: EventCategory) {
+    this.categoryFilter = eventCategory;
+    this.getEvents();
+  }
+
+  isActiveCategory(category: Number) {
+    return category === this.categoryFilter;
   }
 }

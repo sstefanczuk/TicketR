@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using TicketR.Common.Enums;
 
-namespace TicketR.Api.Dto
+namespace TicketR.Common.Models.Events
 {
     public class EventPreview
     {
@@ -13,5 +11,6 @@ namespace TicketR.Api.Dto
         public string ImagePath { get; set; }
         public string Location { get; set; }
         public decimal Price { get; set; }
+        public EventCategory Category { get; set; }
     }
 }
