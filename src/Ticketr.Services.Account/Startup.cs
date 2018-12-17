@@ -22,6 +22,7 @@ namespace TicketR.Services.Account
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            var secretKey = Configuration.GetSection("secretKey").Value;
         }
 
         public IConfiguration Configuration { get; }

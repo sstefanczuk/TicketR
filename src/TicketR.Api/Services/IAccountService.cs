@@ -1,6 +1,7 @@
 ﻿using RestEase;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
@@ -15,7 +16,7 @@ namespace TicketR.Api.Services
 
         [AllowAnyStatusCode]
         [Get("api/login")]
-        Task<String> LoginAsync();
+        Task<JwtSecurityToken> LoginAsync();
 
         [AllowAnyStatusCode]
         [Get("api/register")]
