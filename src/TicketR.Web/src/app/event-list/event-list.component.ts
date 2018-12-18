@@ -11,11 +11,11 @@ import { EventCategory } from '../enums/eventCategory';
 })
 export class EventListComponent implements OnInit {
 
-  eventList: EventPreview[] = [];
-  categoryFilter: EventCategory = EventCategory.Any;
-
   constructor(private eventsService: EventsService,
     private router: Router) { }
+
+  eventList: EventPreview[] = [];
+  categoryFilter: EventCategory = EventCategory.Any;
 
   ngOnInit() {
     this.getEvents();
@@ -30,7 +30,7 @@ export class EventListComponent implements OnInit {
   }
 
   goToDetails(eventId: number) {
-      this.router.navigate([`/event/${eventId}`]);
+    this.router.navigate([`/event/${eventId}`]);
   }
 
   selectCategory(eventCategory: EventCategory) {

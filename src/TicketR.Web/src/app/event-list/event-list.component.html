@@ -2,14 +2,22 @@
   <div class="row">
     <div class="span12">
       <ul class="portfolio-categ filter">
-        <li class="all" [ngClass]="{'active': isActiveCategory(0)}" (click)="selectCategory(0)"><a class="category-filter">All</a></li>
-        <li class="web" [ngClass]="{'active': isActiveCategory(1)}" (click)="selectCategory(1)"><a class="category-filter">Sports</a></li>
-        <li class="icon" [ngClass]="{'active': isActiveCategory(2)}" (click)="selectCategory(2)"><a class="category-filter">Concerts</a></li>
-        <li class="graphic" [ngClass]="{'active': isActiveCategory(3)}" (click)="selectCategory(3)"><a class="category-filter">Theater</a></li>
+        <li [ngClass]="{'active': isActiveCategory(0)}" (click)="selectCategory(0)">
+          <a class="category-filter">All</a>
+        </li>
+        <li [ngClass]="{'active': isActiveCategory(1)}" (click)="selectCategory(1)">
+          <a class="category-filter">Sports</a>
+        </li>
+        <li [ngClass]="{'active': isActiveCategory(2)}" (click)="selectCategory(2)">
+          <a class="category-filter">Concerts</a>
+        </li>
+        <li [ngClass]="{'active': isActiveCategory(3)}" (click)="selectCategory(3)">
+          <a class="category-filter">Theater</a>
+        </li>
       </ul>
 
       <div class="clearfix"></div>
-      <p class="empty-list-description" *ngIf="eventList.length === 0">There are no events in this section.</p>
+      <p class="empty-list-description" *ngIf="eventList.length === 0">Sorry, this section does not contain any events.</p>
       <div class="row">
         <section id="projects">
           <ul id="thumbs" class="grid cs-style-4 portfolio">
