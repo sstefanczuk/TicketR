@@ -1,7 +1,9 @@
+import { TicketsPool } from './ticketsPool';
+import { Location } from './location';
+
 export class EventDetails {
 
-    constructor()
-    {
+    constructor() {
         this.location = new Location();
         this.ticketsPools = new Array<TicketsPool>();
     }
@@ -17,20 +19,4 @@ export class EventDetails {
 
     ticketsPools: TicketsPool[];
     location: Location;
-}
-
-export class TicketsPool {
-    name: string;
-    price: number;
-    availableTickets: number;
-    totalTickets: number;
-}
-
-export class Location {
-    name: string;
-    description: string;
-    imagePath: string;
-    city: string;
-    addressLines: string[];
-    phone: string;
 }
