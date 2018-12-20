@@ -1,4 +1,4 @@
-﻿namespace TicketR.Api.Dto
+﻿namespace TicketR.Common.Models.Events
 {
     public class Location
     {
