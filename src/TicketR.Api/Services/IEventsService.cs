@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestEase;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using TicketR.Api.Dto;
+using TicketR.Common.Enums;
 using TicketR.Common.Models;
+using TicketR.Common.Models.Events;
 
 namespace TicketR.Api.Services
 {
@@ -17,7 +16,7 @@ namespace TicketR.Api.Services
 
         [AllowAnyStatusCode]
         [Get("api/events")]
-        Task<List<string>> GetEventsAsync();
+        Task<List<EventPreview>> GetEventsAsync([Query]EventCategory category);
 
         [AllowAnyStatusCode]
         [Get("api/events/{id}")]
