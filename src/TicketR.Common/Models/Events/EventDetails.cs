@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace TicketR.Api.Dto
+namespace TicketR.Common.Models.Events
 {
     public class EventDetails
     {

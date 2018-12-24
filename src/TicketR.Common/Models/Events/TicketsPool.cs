@@ -1,4 +1,4 @@
-﻿namespace TicketR.Services.Events.Dto
+﻿namespace TicketR.Common.Models.Events
 {
     public class TicketsPool
     {
