@@ -11,7 +11,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TicketR.Services.Account.Infrastructure\TicketR.Services.Account.Infrastructure.csproj" />
-    <ProjectReference Include="..\TicketR.Common\TicketR.Common.csproj" />
   </ItemGroup>
 
 </Project>

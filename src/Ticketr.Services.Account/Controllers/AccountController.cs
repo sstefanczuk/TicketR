@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using RestEase;
@@ -20,12 +21,14 @@ namespace TicketR.Services.Account.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IJwtService jwtService;
+        private readonly IMapper mapper;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService, IMapper mapper)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.jwtService = jwtService;
+            this.mapper = mapper;
         }
 
         [HttpPost("login")]
@@ -51,6 +54,13 @@ namespace TicketR.Services.Account.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterDto registerModel)
         {
+            if (!ModelState.IsValid)
+            {
+                throw new ApplicationException("Model is invalid");
+            }
+            var user = mapper.Map<AppUser>(registerModel);
+
+            var result = await userManager.CreateAsync(user, registerModel.Password);
             return Ok();
         }
 
