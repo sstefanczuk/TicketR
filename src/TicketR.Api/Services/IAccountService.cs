@@ -15,15 +15,15 @@ namespace TicketR.Api.Services
         Task<HeartbeatDetails> HeartbeatAsync();
 
         [AllowAnyStatusCode]
-        [Get("api/login")]
+        [Post("api/login")]
         Task<JwtSecurityToken> LoginAsync();
 
         [AllowAnyStatusCode]
-        [Get("api/register")]
-        Task<List<string>> RegisterAsync();
+        [Post("api/register")]
+        Task<string> RegisterAsync(RegisterDto registerDto);
 
         [AllowAnyStatusCode]
-        [Get("api/forgotpassword")]
+        [Post("api/forgotpassword")]
         Task<List<string>> ForgotPasswordAsync();
     }
 }

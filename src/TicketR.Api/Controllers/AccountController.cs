@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Api.Services;
+using TicketR.Common.Models;
 
 namespace TicketR.Api.Controllers
 {
@@ -16,6 +17,13 @@ namespace TicketR.Api.Controllers
         public AccountController(IAccountService accountService)
         {
             this.accountService = accountService;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
+        {
+            var result = await this.accountService.RegisterAsync(registerDto);
+            return Ok();
         }
     }
 }

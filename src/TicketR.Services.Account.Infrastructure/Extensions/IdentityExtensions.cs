@@ -26,12 +26,14 @@ namespace TicketR.Services.Account.Infrastructure.Extensions
 
             services.AddScoped<RoleManager<IdentityRole>>();
             services.AddScoped<UserManager<AppUser>>();
+            services.AddScoped<SignInManager<AppUser>>();
             services.AddDbContext<AccountDbContext>(o => o.UseSqlServer(configuration.GetConnectionString("AccountConnection")));
+            //services.adautomapper
         }
 
         public static void AddJwtSecurity(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddSingleton<IJwtService, JwtService>();
+            services.AddScoped<IJwtService, JwtService>();
             var jwtAppSettingOptions = configuration.GetSection(nameof(JwtIssuerOptions));
             var secretKey = configuration.GetSection("secretKey").Value;
             var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));

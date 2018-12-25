@@ -34,15 +34,16 @@ namespace TicketR.Services.Account
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<AccountDbContext>()
                 .AddDefaultTokenProviders();
+            services.AddJwtSecurity(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AccountDbContext dbContext)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
             app.UseMvc();
-
             dbContext.Database.EnsureCreated();
-            dbContext.Database.Migrate();
+            //var migrations = dbContext.Database.GetPendingMigrations().ToList();
+            //if (migrations.Any()) dbContext.Database.Migrate();
         }
     }
 }
