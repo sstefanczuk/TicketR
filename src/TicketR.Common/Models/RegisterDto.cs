@@ -8,15 +8,13 @@ namespace TicketR.Common.Models
     public class RegisterDto
     {
         [Required]
-        public string UserName { get; set; }
-
-        [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required]
-        public string Password { get; set; }
+        public string UserName { get; set; }
 
         [Required]
-        public string ConfirmPassword { get; set; }
+        public string Password { get; set; }
     }
 }

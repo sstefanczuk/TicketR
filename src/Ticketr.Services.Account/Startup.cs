@@ -14,6 +14,7 @@ using TicketR.Common.Middleware;
 using TicketR.Services.Account.Infrastructure.Data;
 using TicketR.Services.Account.Infrastructure.Extensions;
 using TicketR.Services.Account.Infrastructure.Models;
+using AutoMapper;
 
 namespace TicketR.Services.Account
 {
@@ -29,6 +30,7 @@ namespace TicketR.Services.Account
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddIdentity(Configuration);
             services.AddIdentity<AppUser, IdentityRole>()
