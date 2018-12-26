@@ -52,7 +52,7 @@ namespace TicketR.Services.Account.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<string> RegisterAsync([FromBody] RegisterDto registerModel)
+        public async Task<IdentityResult> RegisterAsync([FromBody] RegisterDto registerModel)
         {
             if (!ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace TicketR.Services.Account.Controllers
             var user = mapper.Map<AppUser>(registerModel);
 
             var result = await userManager.CreateAsync(user, registerModel.Password);
-            return result.ToString();
+            return result;
         }
 
         [HttpPost("forgotpassword")]

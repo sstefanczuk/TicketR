@@ -1,4 +1,6 @@
-﻿using RestEase;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using RestEase;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -18,9 +20,9 @@ namespace TicketR.Api.Services
         [Post("api/login")]
         Task<JwtSecurityToken> LoginAsync();
 
-        [AllowAnyStatusCode]
         [Post("api/register")]
-        Task<string> RegisterAsync(RegisterDto registerDto);
+        [Produces(typeof(IdentityResult))]
+        Task<Response<IdentityResult>> RegisterAsync([Body]RegisterDto registerDto);
 
         [AllowAnyStatusCode]
         [Post("api/forgotpassword")]

@@ -23,6 +23,7 @@ namespace TicketR.Api.Controllers
         public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
         {
             var result = await this.accountService.RegisterAsync(registerDto);
+            var x = result.GetContent();
             return Ok();
         }
     }

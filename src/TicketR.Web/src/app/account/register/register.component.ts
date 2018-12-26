@@ -18,8 +18,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.model);
-    // var x = this.accountService.register(this.model)
-    //   .subscribe(() => console.log('dsad'));
+    var x = this.accountService.register(this.model)
+      .subscribe(() => console.log('dsad'));
   }
 }

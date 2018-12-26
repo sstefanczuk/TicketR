@@ -1,21 +1,31 @@
 <div class="container">
   <h1>Hero Form</h1>
-  <form>
+  <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
     <div class="form-group">
-      <label for="UserName">Name</label>
-      <input type="text" class="form-control" id="userName" required [(ngModel)]="model.userName">
+      <label for="userName">Name</label>
+      <input type="text" class="form-control" [(ngModel)]="model.userName" name="userName" #userName="ngModel" required>
+      <div *ngIf="userName.invalid && (userName.dirty || userName.touched)" class="alert alert-danger">
+        <div *ngIf="userName.errors.required">Username is required. </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="Email">Email</label>
-      <input type="email" class="form-control" id="email" required [(ngModel)]="model.email">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" [email]="model.email !== ''" [(ngModel)]="model.email" name="email" #email="ngModel"
+        required>
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors.required">Email is required. </div>
+        <div *ngIf="email.errors.email">It's not valid email </div>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="Password">Password</label>
-      <input type="password" class="form-control" id="password" required [(ngModel)]="model.password">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+        <div *ngIf="password.errors.required">Password is required. </div>
+      </div>
     </div>
-
     <button type="submit" class="btn btn-success">Submit</button>
 
   </form>
