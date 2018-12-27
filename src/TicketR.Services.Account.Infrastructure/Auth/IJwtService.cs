@@ -11,6 +11,6 @@ namespace TicketR.Services.Account.Infrastructure.Auth
     public interface IJwtService
     {
         Task<List<Claim>> GetValidClaims(AppUser appUser);
-        JwtSecurityToken GenerateJwt(List<Claim> claims);
+        string GenerateJwt(List<Claim> claims);
     }
 }

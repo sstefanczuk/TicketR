@@ -25,7 +25,7 @@ namespace TicketR.Services.Account.Infrastructure.Auth
             this.jwtOptions = jwtOptions.Value;
         }
 
-        public JwtSecurityToken GenerateJwt(List<Claim> claims)
+        public string GenerateJwt(List<Claim> claims)
         {
             var jwt = new JwtSecurityToken(
                 issuer: jwtOptions.Issuer,
@@ -34,8 +34,8 @@ namespace TicketR.Services.Account.Infrastructure.Auth
                 notBefore: jwtOptions.NotBefore,
                 expires: jwtOptions.Expiration,
                 signingCredentials: jwtOptions.SigningCredentials);
-
-            return jwt;
+            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+            return encodedJwt;
         }
 
         public async Task<List<Claim>> GetValidClaims(AppUser user)
@@ -44,6 +44,7 @@ namespace TicketR.Services.Account.Infrastructure.Auth
             var claims = new List<Claim>
             {
                 new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, await jwtOptions.JtiGenerator()),
                 new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(jwtOptions.IssuedAt).ToString(), ClaimValueTypes.Integer64),
                 new Claim(options.ClaimsIdentity.UserIdClaimType, user.Id.ToString()),

@@ -1,3 +1,31 @@
-<p>
-  login works!
-</p>
+<div class="container">
+    <h1>Login Form</h1>
+    <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="control-group">
+        <label for="email">Email</label>
+        <input type="text" class="input-large" [email]="model.email !== ''" [(ngModel)]="model.email" name="email" #email="ngModel"
+          required>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+          <div *ngIf="email.errors.required">Email is required. </div>
+          <div *ngIf="email.errors.email">It's not valid email </div>
+        </div>
+      </div>
+  
+      <div class="control-group">
+        <label for="password">Password</label>
+        <input type="password" class="input-large" [(ngModel)]="model.password" name="password" #password="ngModel" required>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          <div *ngIf="password.errors.required">Password is required. </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Login</button>
+      <div class="info-box">
+        <ul class="alert alert-block alert-error" *ngIf="errors && errors.length>0">
+          <li *ngFor='let error of errors' class="text-danger">
+            {{error}}
+          </li>
+        </ul>
+      </div>
+  
+    </form>
+  </div>

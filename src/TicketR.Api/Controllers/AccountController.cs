@@ -33,5 +33,23 @@ namespace TicketR.Api.Controllers
             if (result.Errors.Any()) return new BadRequestObjectResult(result.Errors.Select(x => x.Description));
             return Ok();
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody]LoginDto loginDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                throw new ApplicationException("Model is invalid");
+            }
+
+            var response = await this.accountService.LoginAsync(loginDto);
+
+            if(response.ResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                return Ok(response.StringContent);
+            }
+
+            return Ok();
+        }
     }
 }

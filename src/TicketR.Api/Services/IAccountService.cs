@@ -16,8 +16,9 @@ namespace TicketR.Api.Services
         [Get("api/heartbeat")]
         Task<HeartbeatDetails> HeartbeatAsync();
 
+        [AllowAnyStatusCode]
         [Post("api/login")]
-        Task<Response<JwtSecurityToken>> LoginAsync([Body]LoginDto loginDto);
+        Task<Response<IActionResult>> LoginAsync([Body]LoginDto loginDto);
 
         [Post("api/register")]
         Task<Response<IdentityResult>> RegisterAsync([Body]RegisterDto registerDto);

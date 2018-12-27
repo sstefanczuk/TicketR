@@ -33,22 +33,23 @@ namespace TicketR.Services.Account.Controllers
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<JwtSecurityToken> LoginAsync([FromBody]LoginDto credentials)
+        public async Task<IActionResult> LoginAsync([FromBody]LoginDto credentials)
         {
-            if (!ModelState.IsValid)
+            var user = await userManager.FindByEmailAsync(credentials.Email);
+            if (user == null)
             {
-                throw new ApplicationException("You need to provide username and password");
+                return new BadRequestObjectResult("User does not exists");
             }
 
-            var result = await signInManager.PasswordSignInAsync(credentials.UserName, credentials.Password, true, false);
+            var result = await signInManager.PasswordSignInAsync(user, credentials.Password, true, false);
             if (result.Succeeded)
             {
-                var user = await userManager.FindByNameAsync(credentials.UserName);
                 var claims = await jwtService.GetValidClaims(user);
 
-                return jwtService.GenerateJwt(claims);
+                return Ok(jwtService.GenerateJwt(claims));
             }
-            throw new ApplicationException("Invalid username or password");
+
+            return new BadRequestObjectResult("Invalid username or password");
         }
 
         [HttpPost("register")]
