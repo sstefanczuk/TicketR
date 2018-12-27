@@ -22,8 +22,15 @@ namespace TicketR.Api.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
         {
-            var result = await this.accountService.RegisterAsync(registerDto);
-            var x = result.GetContent();
+            if (!ModelState.IsValid)
+            {
+                throw new ApplicationException("Model is invalid");
+            }
+
+            var response = await this.accountService.RegisterAsync(registerDto);
+            var result = response.GetContent();
+
+            if (result.Errors.Any()) return new BadRequestObjectResult(result.Errors.Select(x => x.Description));
             return Ok();
         }
     }

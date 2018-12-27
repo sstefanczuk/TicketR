@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AccountService } from '../../http/account-service';
 import { RegisterModel } from '../../models/account/registerModel';
 import { FormsModule } from '@angular/forms';
+import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,16 +11,22 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private router: Router) { }
   model = new RegisterModel();
+  errors: string[];
   ngOnInit() {
-
-
   }
 
   onSubmit() {
-    var x = this.accountService.register(this.model)
-      .subscribe(() => console.log('dsad'));
+    this.accountService.register(this.model)
+      .subscribe(response => {
+        if (response.ok) {
+          this.errors = null;
+          this.router.navigate(['/login']);
+        }
+      },
+        (ex: HttpErrorResponse) => {
+          this.errors = ex.error;
+        });
   }
 }

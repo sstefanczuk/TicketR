@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RegisterModel } from '../models/account/registerModel';
 import { Observable } from 'rxjs';
@@ -11,10 +11,10 @@ export class AccountService {
 
     constructor(private http: HttpClient) { }
 
-    register(registerModel: RegisterModel) {
-        console.log(JSON.stringify(registerModel));
+    register(registerModel: RegisterModel): Observable<HttpResponse<any>> {
         let httpheaders = new HttpHeaders().set('Content-Type', 'application/json');
-        return this.http.post(this.apiUrl + 'register', JSON.stringify(registerModel), { headers: httpheaders });
+        return this.http.post(this.apiUrl + 'register', JSON.stringify(registerModel),
+            { headers: httpheaders, observe: 'response' });
 
     }
 }

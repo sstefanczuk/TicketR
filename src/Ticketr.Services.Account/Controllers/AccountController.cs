@@ -54,13 +54,9 @@ namespace TicketR.Services.Account.Controllers
         [HttpPost("register")]
         public async Task<IdentityResult> RegisterAsync([FromBody] RegisterDto registerModel)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ApplicationException("Model is invalid");
-            }
             var user = mapper.Map<AppUser>(registerModel);
-
             var result = await userManager.CreateAsync(user, registerModel.Password);
+
             return result;
         }
 
