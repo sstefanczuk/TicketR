@@ -17,16 +17,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   onSubmit() {
-    this.accountService.login(this.model)
-      .subscribe(response => {
-        console.log(response);
-        if (response.ok) {
-          this.errors = null;
-        }
-      },
-        (ex: HttpErrorResponse) => {
-          this.errors = ex.error;
-          console.log(ex);
-        });
+    this.accountService.login(this.model);
   }
 }

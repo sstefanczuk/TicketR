@@ -49,7 +49,7 @@ namespace TicketR.Api.Controllers
                 return Ok(response.StringContent);
             }
 
-            return Ok();
+            return Unauthorized();
         }
     }
 }
