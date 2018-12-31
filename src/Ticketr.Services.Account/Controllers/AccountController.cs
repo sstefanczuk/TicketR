@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
+using TicketR.Common.Models.Account;
 using TicketR.Services.Account.Infrastructure.Auth;
 using TicketR.Services.Account.Infrastructure.Models;
 
@@ -22,13 +23,15 @@ namespace TicketR.Services.Account.Controllers
         private readonly SignInManager<AppUser> signInManager;
         private readonly IJwtService jwtService;
         private readonly IMapper mapper;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService, IMapper mapper)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService, IMapper mapper, RoleManager<IdentityRole> roleManager)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.jwtService = jwtService;
             this.mapper = mapper;
+            this.roleManager = roleManager;
         }
 
         [HttpPost("login")]
@@ -49,15 +52,16 @@ namespace TicketR.Services.Account.Controllers
                 return Ok(jwtService.GenerateJwt(claims));
             }
 
-            return new BadRequestObjectResult("Invalid username or password");
+            return Unauthorized();
         }
 
         [HttpPost("register")]
         public async Task<IdentityResult> RegisterAsync([FromBody] RegisterDto registerModel)
         {
             var user = mapper.Map<AppUser>(registerModel);
+            
             var result = await userManager.CreateAsync(user, registerModel.Password);
-
+            var roleResult = await userManager.AddToRoleAsync(user, "Customer");
             return result;
         }
 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TicketR.Services.Account.Infrastructure.Data;
 
 namespace TicketR.Services.Account.Infrastructure.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    partial class AccountDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181231082740_SeedRoles")]
+    partial class SeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +45,9 @@ namespace TicketR.Services.Account.Infrastructure.Migrations
                     b.ToTable("AspNetRoles");
 
                     b.HasData(
-                        new { Id = "c558f36a-c96d-4c32-9ec1-c2d95494e4ee", ConcurrencyStamp = "1b3fd9dd-2aed-43d7-a2c2-97b99d81bc40", Name = "Admin" },
-                        new { Id = "8ce8a703-dc45-44f2-94d6-6936f49976f0", ConcurrencyStamp = "c827268e-004e-4acb-9a95-45f6bdfb5120", Name = "Organiser" },
-                        new { Id = "e59c0134-ddad-4135-bb48-22f685368b33", ConcurrencyStamp = "4de03189-b5b1-4b0f-9904-2ceb8dd214ed", Name = "Customer" }
+                        new { Id = "c558f36a-c96d-4c32-9ec1-c2d95494e4ee", ConcurrencyStamp = "1b3fd9dd-2aed-43d7-a2c2-97b99d81bc40", Name = "Admin", NormalizedName = "ADMIN" },
+                        new { Id = "8ce8a703-dc45-44f2-94d6-6936f49976f0", ConcurrencyStamp = "c827268e-004e-4acb-9a95-45f6bdfb5120", Name = "Organiser", NormalizedName = "ORGANISER" },
+                        new { Id = "e59c0134-ddad-4135-bb48-22f685368b33", ConcurrencyStamp = "4de03189-b5b1-4b0f-9904-2ceb8dd214ed", Name = "Customer", NormalizedName = "CUSTOMER" }
                     );
                 });
 

@@ -13,10 +13,19 @@ export class LoginComponent implements OnInit {
 
   constructor(private accountService: AccountService) { }
   model = new LoginModel();
-  errors: string[];
+  error: string;
   ngOnInit() {
   }
   onSubmit() {
-    this.accountService.login(this.model);
+    this.accountService.login(this.model)
+      .subscribe(response => {
+        if (response.ok) {
+          this.error = null;
+          this.accountService.setToken(response.body);
+        }
+      },
+        (ex: HttpErrorResponse) => {
+          this.error = ex.error
+        });
   }
 }

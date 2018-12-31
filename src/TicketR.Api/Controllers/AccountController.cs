@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Api.Services;
 using TicketR.Common.Models;
+using TicketR.Common.Models.Account;
 
 namespace TicketR.Api.Controllers
 {
@@ -49,7 +50,7 @@ namespace TicketR.Api.Controllers
                 return Ok(response.StringContent);
             }
 
-            return Unauthorized();
+            throw new UnauthorizedAccessException("Invalid username or password");
         }
     }
 }

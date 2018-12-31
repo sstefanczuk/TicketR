@@ -26,19 +26,7 @@ export class AccountService {
     }
 
     login(loginModel: LoginModel) {
-        let errors: string[];
-        return this.http.post(this.apiUrl + 'login', JSON.stringify(loginModel), { headers: this.httpHeaders, observe: 'response' })
-            .subscribe(response => {
-                console.log(response);
-                if (response.ok) {
-                    errors = null;
-                }
-            },
-                (ex: HttpErrorResponse) => {
-                    console.log('ERROR: ' + ex.error);
-                    errors = ex.error
-                });
-        return errors;
+        return this.http.post<AuthModel>(this.apiUrl + 'login', JSON.stringify(loginModel), { headers: this.httpHeaders, observe: 'response' });
     }
 
     getToken(): string {
@@ -47,8 +35,12 @@ export class AccountService {
 
     setToken(tokenModel: AuthModel) {
         localStorage.setItem(TOKEN_NAME, tokenModel.token);
-        localStorage.setItem(EXPIRY, tokenModel.expiry);
-        localStorage.setItem(USER_ROLE, tokenModel.role.toString());
+        localStorage.setItem(EXPIRY, tokenModel.expiration);
+        let jwtData = tokenModel.token.split('.')[1];
+        let decodedJwtJsonData = window.atob(jwtData);
+        let decodedJwtData = JSON.parse(decodedJwtJsonData)
+        let roles = decodedJwtData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+        localStorage.setItem(USER_ROLE, roles.toString());
     }
 
     getTokenExpirationDate(): number {
@@ -77,9 +69,9 @@ export class AccountService {
         localStorage.removeItem(USER_ROLE);
     }
 
-    getUserRole(): number {
-        let userRole: string = JSON.parse(localStorage.getItem(USER_ROLE));
-        return parseInt(userRole);
+    getUserRole(role: string): boolean {
+        let userRoles = localStorage.getItem(USER_ROLE).split(',');
+        return userRoles.includes(role);
     }
 
     isAdmin(): boolean {
@@ -87,6 +79,14 @@ export class AccountService {
             return false;
         }
 
-        return this.getUserRole() === Roles.Admin;
+        return this.getUserRole('Admin');
+    }
+
+    isOrganiser(): boolean {
+        if (localStorage.getItem(USER_ROLE) == null) {
+            return false;
+        }
+
+        return this.getUserRole('Organiser');
     }
 }

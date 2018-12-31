@@ -7,6 +7,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
+using TicketR.Common.Models.Account;
 
 namespace TicketR.Api.Services
 {

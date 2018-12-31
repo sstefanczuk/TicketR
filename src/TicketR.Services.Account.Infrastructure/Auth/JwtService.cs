@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TicketR.Common.Models.Account;
 using TicketR.Services.Account.Infrastructure.Models;
 
 namespace TicketR.Services.Account.Infrastructure.Auth
@@ -25,17 +26,22 @@ namespace TicketR.Services.Account.Infrastructure.Auth
             this.jwtOptions = jwtOptions.Value;
         }
 
-        public string GenerateJwt(List<Claim> claims)
+        public AuthData GenerateJwt(List<Claim> claims)
         {
+            var expiration = jwtOptions.Expiration;
             var jwt = new JwtSecurityToken(
                 issuer: jwtOptions.Issuer,
                 audience: jwtOptions.Audience,
                 claims: claims,
                 notBefore: jwtOptions.NotBefore,
-                expires: jwtOptions.Expiration,
+                expires: expiration,
                 signingCredentials: jwtOptions.SigningCredentials);
-            var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
-            return encodedJwt;
+            var authData = new AuthData
+            {
+                Token = new JwtSecurityTokenHandler().WriteToken(jwt),
+                Expiry = expiration
+            };
+            return authData;
         }
 
         public async Task<List<Claim>> GetValidClaims(AppUser user)
