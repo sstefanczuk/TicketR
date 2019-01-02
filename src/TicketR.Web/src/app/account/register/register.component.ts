@@ -20,12 +20,15 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.accountService.register(this.model)
       .subscribe(response => {
+        console.log(response);
         if (response.ok) {
           this.errors = null;
           this.router.navigate(['/login']);
         }
       },
         (ex: HttpErrorResponse) => {
+          console.log(ex);
+
           this.errors = ex.error;
         });
   }

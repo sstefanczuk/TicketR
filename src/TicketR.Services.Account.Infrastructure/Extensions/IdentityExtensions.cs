@@ -11,6 +11,8 @@ using System.Net.Http;
 using TicketR.Services.Account.Infrastructure.Auth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
+using MediatR;
 
 namespace TicketR.Services.Account.Infrastructure.Extensions
 {
@@ -70,6 +72,11 @@ namespace TicketR.Services.Account.Infrastructure.Extensions
                 o.TokenValidationParameters = tokenValidationParameters;
                 o.SaveToken = true;
             });
+        }
+
+        public static void AddMediatr(this IServiceCollection services)
+        {
+            services.AddMediatR(Assembly.GetExecutingAssembly());
         }
     }
 }

@@ -15,6 +15,9 @@ using TicketR.Services.Account.Infrastructure.Data;
 using TicketR.Services.Account.Infrastructure.Extensions;
 using TicketR.Services.Account.Infrastructure.Models;
 using AutoMapper;
+using MediatR;
+using System.Reflection;
+using TicketR.Services.Account.Infrastructure.Commands;
 
 namespace TicketR.Services.Account
 {
@@ -37,6 +40,7 @@ namespace TicketR.Services.Account
                 .AddEntityFrameworkStores<AccountDbContext>()
                 .AddDefaultTokenProviders();
             services.AddJwtSecurity(Configuration);
+            services.AddMediatr();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AccountDbContext dbContext)

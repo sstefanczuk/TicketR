@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using TicketR.Api.Services;
 using TicketR.Common.Models;
@@ -35,6 +36,7 @@ namespace TicketR.Api.Controllers
             return Ok();
         }
 
+        [ProducesResponseType(typeof(AuthData), (int)HttpStatusCode.OK)]
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginDto loginDto)
         {
@@ -45,12 +47,12 @@ namespace TicketR.Api.Controllers
 
             var response = await this.accountService.LoginAsync(loginDto);
 
-            if(response.ResponseMessage.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.ResponseMessage.IsSuccessStatusCode)
             {
-                return Ok(response.StringContent);
+                return Ok(response.GetContent());
             }
 
-            throw new UnauthorizedAccessException("Invalid username or password");
+            throw new UnauthorizedAccessException();
         }
     }
 }

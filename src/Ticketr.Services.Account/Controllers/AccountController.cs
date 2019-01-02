@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -24,35 +25,24 @@ namespace TicketR.Services.Account.Controllers
         private readonly IJwtService jwtService;
         private readonly IMapper mapper;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IMediator mediator;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService, IMapper mapper, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService, IMapper mapper, RoleManager<IdentityRole> roleManager, IMediator mediator)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.jwtService = jwtService;
             this.mapper = mapper;
             this.roleManager = roleManager;
+            this.mediator = mediator;
         }
 
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> LoginAsync([FromBody]LoginDto credentials)
+        public async Task<AuthData> LoginAsync([FromBody]LoginDto credentials)
         {
-            var user = await userManager.FindByEmailAsync(credentials.Email);
-            if (user == null)
-            {
-                return new BadRequestObjectResult("User does not exists");
-            }
-
-            var result = await signInManager.PasswordSignInAsync(user, credentials.Password, true, false);
-            if (result.Succeeded)
-            {
-                var claims = await jwtService.GetValidClaims(user);
-
-                return Ok(jwtService.GenerateJwt(claims));
-            }
-
-            return Unauthorized();
+            var response = await mediator.Send<AuthData>(credentials);
+            return response;
         }
 
         [HttpPost("register")]

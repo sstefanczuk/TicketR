@@ -21,11 +21,14 @@ export class LoginComponent implements OnInit {
       .subscribe(response => {
         if (response.ok) {
           this.error = null;
+          //let res = JSON.parse(response.body);
+          console.log(response);
           this.accountService.setToken(response.body);
         }
       },
         (ex: HttpErrorResponse) => {
-          this.error = ex.error
+          this.error = ex.error;
+          console.log(ex.error);
         });
   }
 }

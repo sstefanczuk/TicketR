@@ -25,7 +25,7 @@ export class AccountService {
             { headers: this.httpHeaders, observe: 'response' });
     }
 
-    login(loginModel: LoginModel) {
+    login(loginModel: LoginModel) : Observable<HttpResponse<AuthModel>> {
         return this.http.post<AuthModel>(this.apiUrl + 'login', JSON.stringify(loginModel), { headers: this.httpHeaders, observe: 'response' });
     }
 
@@ -34,8 +34,9 @@ export class AccountService {
     }
 
     setToken(tokenModel: AuthModel) {
+        console.log('tokenmodel:' + tokenModel.token);
         localStorage.setItem(TOKEN_NAME, tokenModel.token);
-        localStorage.setItem(EXPIRY, tokenModel.expiration);
+        localStorage.setItem(EXPIRY, tokenModel.expiry);
         let jwtData = tokenModel.token.split('.')[1];
         let decodedJwtJsonData = window.atob(jwtData);
         let decodedJwtData = JSON.parse(decodedJwtJsonData)
@@ -69,7 +70,7 @@ export class AccountService {
         localStorage.removeItem(USER_ROLE);
     }
 
-    getUserRole(role: string): boolean {
+    hasRole(role: string): boolean {
         let userRoles = localStorage.getItem(USER_ROLE).split(',');
         return userRoles.includes(role);
     }
@@ -79,7 +80,7 @@ export class AccountService {
             return false;
         }
 
-        return this.getUserRole('Admin');
+        return this.hasRole('Admin');
     }
 
     isOrganiser(): boolean {
@@ -87,6 +88,6 @@ export class AccountService {
             return false;
         }
 
-        return this.getUserRole('Organiser');
+        return this.hasRole('Organiser');
     }
 }
