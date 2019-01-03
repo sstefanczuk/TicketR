@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MediatR;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace TicketR.Common.Models.Account
 {
-    public class RegisterDto
+    public class RegisterDto : IRequest<IdentityResult>
     {
         [Required]
         [DataType(DataType.EmailAddress)]

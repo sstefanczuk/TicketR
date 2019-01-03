@@ -21,18 +21,19 @@ namespace TicketR.Api.Controllers
             this.accountService = accountService;
         }
 
+        [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) throw new ApplicationException("Model is invalid");
+
+            using (var response = await this.accountService.RegisterAsync(registerDto))
             {
-                throw new ApplicationException("Model is invalid");
+                var result = response.GetContent();
+                if (!result.Succeeded) return new BadRequestObjectResult(result.Errors.Select(x => x.Description));
             }
 
-            var response = await this.accountService.RegisterAsync(registerDto);
-            var result = response.GetContent();
-
-            if (result.Errors.Any()) return new BadRequestObjectResult(result.Errors.Select(x => x.Description));
             return Ok();
         }
 
@@ -40,16 +41,11 @@ namespace TicketR.Api.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody]LoginDto loginDto)
         {
-            if (!ModelState.IsValid)
-            {
-                throw new ApplicationException("Model is invalid");
-            }
+            if (!ModelState.IsValid) throw new ApplicationException("Model is invalid");
 
-            var response = await this.accountService.LoginAsync(loginDto);
-
-            if (response.ResponseMessage.IsSuccessStatusCode)
+            using (var response = await this.accountService.LoginAsync(loginDto))
             {
-                return Ok(response.GetContent());
+                if (response.ResponseMessage.IsSuccessStatusCode) return Ok(response.GetContent());
             }
 
             throw new UnauthorizedAccessException();

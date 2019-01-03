@@ -1,28 +1,21 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using TicketR.Common.Models;
 using TicketR.Common.Models.Account;
 using TicketR.Services.Account.Infrastructure.Auth;
 using TicketR.Services.Account.Infrastructure.Models;
-using Newtonsoft.Json;
-using RestEase;
 
 namespace TicketR.Services.Account.Infrastructure.Commands
 {
-    public class LoginCommandHandler : IRequestHandler<LoginDto, AuthData>
+    public class LoginQueryHandler : IRequestHandler<LoginDto, AuthData>
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly IJwtService jwtService;
 
-        public LoginCommandHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService)
+        public LoginQueryHandler(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IJwtService jwtService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
@@ -42,7 +35,7 @@ namespace TicketR.Services.Account.Infrastructure.Commands
                 }
             }
 
-            throw new UnauthorizedAccessException("dsa");
+            throw new UnauthorizedAccessException();
         }
     }
 }
