@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { EventDetails } from '../event-details/event-details';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { EventPreview } from '../models/eventPreview';
-import { EventCategory } from '../enums/eventCategory';
+import { EventDetails } from 'src/app/modules/events/models/eventDetails';
+import { EventCategory } from 'src/app/modules/events/enums/eventCategory';
+import { EventPreview } from 'src/app/modules/events/models/eventPreview';
 
 @Injectable({ providedIn: 'root' })
 export class EventsService {
