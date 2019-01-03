@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { EventPreview } from '../models/eventPreview';
-import { EventsService } from '../http/events-service';
+import { EventsService } from 'src/app/core/http/events-service';
 import { Router } from '@angular/router';
-import { EventCategory } from '../enums/eventCategory';
+import { EventPreview } from '../../models/eventPreview';
+import { EventCategory } from '../../enums/eventCategory';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
   styleUrls: ['./event-list.component.css']
 })
+
 export class EventListComponent implements OnInit {
 
   constructor(private eventsService: EventsService,

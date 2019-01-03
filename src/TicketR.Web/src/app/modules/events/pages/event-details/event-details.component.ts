@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { EventDetails, TicketsPool, Location } from './event-details';
 import { ActivatedRoute } from '@angular/router';
-import { EventsService } from '../http/events-service';
+import { EventsService } from 'src/app/core/http/events-service';
+import { EventDetails } from '../../models/eventDetails';
 
 @Component({
   selector: 'app-event-details',

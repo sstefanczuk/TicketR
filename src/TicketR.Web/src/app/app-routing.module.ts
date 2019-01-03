@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './modules/home/pages/home/home.component';
 
-import { HomeComponent } from './home/home.component';
-import { EventDetailsComponent } from './event-details/event-details.component';
-
-const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'event/:id', component: EventDetailsComponent }
+const APP_ROUTES: Routes = [
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(APP_ROUTES)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
