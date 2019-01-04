@@ -1,11 +1,10 @@
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { RegisterModel } from '../models/account/registerModel';
-import { LoginModel } from '../models/account/loginModel';
+import { RegisterModel } from '../../modules/account/models/registerModel';
+import { LoginModel } from '../../modules/account/models/loginModel';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthModel } from '../models/account/AuthModel';
-import { Roles } from '../models/account/roleEnum';
+import { AuthModel } from '../../modules/account/models/authModel';
 
 export const TOKEN_NAME = 'jwt_token';
 export const EXPIRY = 'expiry';
@@ -25,7 +24,7 @@ export class AccountService {
             { headers: this.httpHeaders, observe: 'response' });
     }
 
-    login(loginModel: LoginModel) : Observable<HttpResponse<AuthModel>> {
+    login(loginModel: LoginModel): Observable<HttpResponse<AuthModel>> {
         return this.http.post<AuthModel>(this.apiUrl + 'login', JSON.stringify(loginModel), { headers: this.httpHeaders, observe: 'response' });
     }
 
@@ -42,6 +41,7 @@ export class AccountService {
         let decodedJwtData = JSON.parse(decodedJwtJsonData)
         let roles = decodedJwtData['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
         localStorage.setItem(USER_ROLE, roles.toString());
+
     }
 
     getTokenExpirationDate(): number {
@@ -70,24 +70,20 @@ export class AccountService {
         localStorage.removeItem(USER_ROLE);
     }
 
-    hasRole(role: string): boolean {
-        let userRoles = localStorage.getItem(USER_ROLE).split(',');
-        return userRoles.includes(role);
-    }
-
     isAdmin(): boolean {
-        if (localStorage.getItem(USER_ROLE) == null) {
-            return false;
-        }
-
         return this.hasRole('Admin');
     }
 
     isOrganiser(): boolean {
+        return this.hasRole('Organiser');
+    }
+
+    private hasRole(role: string): boolean {
         if (localStorage.getItem(USER_ROLE) == null) {
             return false;
         }
 
-        return this.hasRole('Organiser');
+        let userRoles = localStorage.getItem(USER_ROLE).split(',');
+        return userRoles.includes(role);
     }
 }

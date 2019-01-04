@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TicketR.Api.Services;
+using TicketR.Common.Auth;
 using TicketR.Common.Middleware;
 using TicketR.Common.RestEase;
 
@@ -30,6 +31,11 @@ namespace TicketR.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.RegisterServiceForwarder<IEventsService>("events-service");
             services.RegisterServiceForwarder<IAccountService>("account-service");
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
+            services.AddJwtSecurity(Configuration);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -39,6 +45,7 @@ namespace TicketR.Api
                 .AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader());
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

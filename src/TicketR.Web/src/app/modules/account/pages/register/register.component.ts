@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AccountService } from '../../http/account-service';
-import { RegisterModel } from '../../models/account/registerModel';
-import { FormsModule } from '@angular/forms';
-import { HttpErrorResponse } from '../../../../node_modules/@angular/common/http';
-import { Router } from '../../../../node_modules/@angular/router';
+import { AccountService } from '../../../../core/http/account-service';
+import { RegisterModel } from '../../models/registerModel';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +22,7 @@ export class RegisterComponent implements OnInit {
         console.log(response);
         if (response.ok) {
           this.errors = null;
-          this.router.navigate(['/login']);
+          this.router.navigate(['/account/login']);
         }
       },
         (ex: HttpErrorResponse) => {

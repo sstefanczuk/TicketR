@@ -6,6 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using TicketR.Common.Auth;
 using TicketR.Common.Models.Account;
 using TicketR.Services.Account.Infrastructure.Models;
 

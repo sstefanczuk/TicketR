@@ -7,7 +7,7 @@ namespace TicketR.Common.Models.Account
     public class RegisterDto : IRequest<IdentityResult>
     {
         [Required]
-        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]

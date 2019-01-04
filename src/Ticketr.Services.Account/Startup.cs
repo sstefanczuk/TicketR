@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TicketR.Common.Middleware;
@@ -15,9 +9,7 @@ using TicketR.Services.Account.Infrastructure.Data;
 using TicketR.Services.Account.Infrastructure.Extensions;
 using TicketR.Services.Account.Infrastructure.Models;
 using AutoMapper;
-using MediatR;
-using System.Reflection;
-using TicketR.Services.Account.Infrastructure.Commands;
+using TicketR.Common.Auth;
 
 namespace TicketR.Services.Account
 {
@@ -26,7 +18,6 @@ namespace TicketR.Services.Account
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            var secretKey = Configuration.GetSection("secretKey").Value;
         }
 
         public IConfiguration Configuration { get; }
@@ -46,10 +37,9 @@ namespace TicketR.Services.Account
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, AccountDbContext dbContext)
         {
             app.UseMiddleware<ExceptionHandlerMiddleware>();
+            app.UseAuthentication();
             app.UseMvc();
             dbContext.Database.EnsureCreated();
-            //var migrations = dbContext.Database.GetPendingMigrations().ToList();
-            //if (migrations.Any()) dbContext.Database.Migrate();
         }
     }
 }

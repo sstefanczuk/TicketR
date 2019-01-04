@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TicketR.Services.Account.Infrastructure.Auth
+namespace TicketR.Common.Auth
 {
     public class JwtIssuerOptions
     {
