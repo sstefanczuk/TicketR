@@ -3,7 +3,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Serilog;
 
-namespace TicketR.Services.Events
+namespace TicketR.Services.Account
 {
     public class Program
     {

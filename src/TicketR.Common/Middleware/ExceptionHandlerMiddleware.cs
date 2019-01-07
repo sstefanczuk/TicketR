@@ -46,9 +46,8 @@ namespace TicketR.Common.Middleware
 
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)httpStatusCode;
-            var responseBody = JsonConvert.SerializeObject(new { errorCode, message });
 
-            return context.Response.WriteAsync(responseBody);
+            return context.Response.WriteAsync(message);
         }
     }
 }

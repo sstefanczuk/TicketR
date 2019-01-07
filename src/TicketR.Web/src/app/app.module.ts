@@ -9,6 +9,7 @@ import { EventsModule } from './modules/events/events.module';
 import { AdminModule } from './modules/admin/admin.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeModule } from './modules/home/home.module';
+import { AccountModule } from './modules/account/account.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HomeModule } from './modules/home/home.module';
     EventsModule,
     AdminModule,
     HttpClientModule,
-    HomeModule
+    HomeModule,
+    AccountModule
   ],
   exports: [
     AppComponent
