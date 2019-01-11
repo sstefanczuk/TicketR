@@ -21,6 +21,7 @@ namespace TicketR.Api.Services
         [Post("api/login")]
         Task<Response<AuthData>> LoginAsync([Body]LoginDto loginDto);
 
+        [AllowAnyStatusCode]
         [Post("api/register")]
         Task<Response<IdentityResult>> RegisterAsync([Body]RegisterDto registerDto);
 
