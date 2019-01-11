@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TicketR.MessageBroker.Integrations.Interfaces;
-using TicketR.MessageBroker.Models;
+﻿using TicketR.MessageBroker.Integrations.Interfaces;
+using TicketR.MessageBroker.Messages.Models;
 
-namespace TicketR.MessageBroker.Interfaces
+namespace TicketR.MessageBroker.Messages.Interfaces
 {
     public interface IMessageBroker
     {

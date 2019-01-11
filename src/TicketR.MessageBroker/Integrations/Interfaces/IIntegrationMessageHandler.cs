@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using TicketR.MessageBroker.Models;
+using TicketR.MessageBroker.Messages.Models;
 
 namespace TicketR.MessageBroker.Integrations.Interfaces
 {

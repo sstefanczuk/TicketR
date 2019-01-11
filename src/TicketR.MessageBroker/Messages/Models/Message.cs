@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TicketR.MessageBroker.Models
+namespace TicketR.MessageBroker.Messages.Models
 {
     public class Message
     {
