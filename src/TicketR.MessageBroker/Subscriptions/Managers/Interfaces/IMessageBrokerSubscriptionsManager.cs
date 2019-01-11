@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using TicketR.MessageBroker.Infrastructure.Messages.Models;
+using TicketR.MessageBroker.Infrastructure.Subscriptions.Models;
 using TicketR.MessageBroker.Integrations.Interfaces;
-using TicketR.MessageBroker.Messages.Models;
-using TicketR.MessageBroker.Subscriptions.Models;
 
-namespace TicketR.MessageBroker.Subscriptions.Managers.Interfaces
+namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Managers.Interfaces
 {
     public interface IMessageBrokerSubscriptionsManager
     {
@@ -13,11 +13,11 @@ namespace TicketR.MessageBroker.Subscriptions.Managers.Interfaces
 
         void AddSubscription<T, TH>()
             where T : Message
-            where TH : IIntegrationMessageHandler<T>;
+            where TH : IMessageHandler<T>;
 
         void RemoveSubscription<T, TH>()
             where T : Message
-            where TH : IIntegrationMessageHandler<T>;
+            where TH : IMessageHandler<T>;
 
         bool HasSubscriptionsForEvent<T>() where T : Message;
         bool HasSubscriptionsForEvent(string eventName);

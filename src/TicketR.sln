@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Services.Account", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Services.Account.Infrastructure", "TicketR.Services.Account.Infrastructure\TicketR.Services.Account.Infrastructure.csproj", "{CD76EDE0-717F-46AF-8C30-E598C89E0AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.MessageBroker", "TicketR.MessageBroker\TicketR.MessageBroker.csproj", "{76549697-E272-47C9-A9CF-B2FA4C4A03FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.MessageBroker.Infrastructure", "TicketR.MessageBroker\TicketR.MessageBroker.Infrastructure.csproj", "{76549697-E272-47C9-A9CF-B2FA4C4A03FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.MessageBroker.RabbitMQ", "TicketR.MessageBroker.RabbitMQ\TicketR.MessageBroker.RabbitMQ.csproj", "{64AAF380-B1DE-4EC8-807F-062CAFF3AF9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.MessageBroker.RabbitMQ", "TicketR.MessageBroker.RabbitMQ\TicketR.MessageBroker.RabbitMQ.csproj", "{64AAF380-B1DE-4EC8-807F-062CAFF3AF9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

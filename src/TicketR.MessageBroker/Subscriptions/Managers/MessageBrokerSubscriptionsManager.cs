@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using TicketR.MessageBroker.Infrastructure.Messages.Models;
+using TicketR.MessageBroker.Infrastructure.Subscriptions.Managers.Interfaces;
+using TicketR.MessageBroker.Infrastructure.Subscriptions.Models;
 using TicketR.MessageBroker.Integrations.Interfaces;
-using TicketR.MessageBroker.Messages.Models;
-using TicketR.MessageBroker.Subscriptions.Managers.Interfaces;
-using TicketR.MessageBroker.Subscriptions.Models;
 
-namespace TicketR.MessageBroker.Subscriptions
+namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Managers
 {
     public class MessageBrokerSubscriptionsManager : IMessageBrokerSubscriptionsManager
     {
@@ -23,14 +22,14 @@ namespace TicketR.MessageBroker.Subscriptions
         public bool IsEmpty => !_handlers.Keys.Any();
         public event EventHandler<string> OnMessageRemoved;
 
-        public void AddSubscription<T, TH>() where T : Message where TH : IIntegrationMessageHandler<T>
+        public void AddSubscription<T, TH>() where T : Message where TH : IMessageHandler<T>
         {
             var messageName = GetMessageKey<T>();
             DoAddSubscription(typeof(TH), messageName);
             _messageTypes.Add(typeof(T));
         }
 
-        public void RemoveSubscription<T, TH>() where T : Message where TH : IIntegrationMessageHandler<T>
+        public void RemoveSubscription<T, TH>() where T : Message where TH : IMessageHandler<T>
         {
             var handlerToRemove = FindSubscriptionToRemove<T, TH>();
             var messageName = GetMessageKey<T>();
@@ -82,7 +81,7 @@ namespace TicketR.MessageBroker.Subscriptions
 
         private SubscriptionModel FindSubscriptionToRemove<T, TH>()
             where T : Message
-            where TH : IIntegrationMessageHandler<T>
+            where TH : IMessageHandler<T>
         {
             var eventName = GetMessageKey<T>();
             return DoFindSubscriptionToRemove(eventName, typeof(TH));

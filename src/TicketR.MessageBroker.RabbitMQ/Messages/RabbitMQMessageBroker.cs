@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using TicketR.MessageBroker.Infrastructure.Messages.Models;
 using TicketR.MessageBroker.Integrations.Interfaces;
-using TicketR.MessageBroker.Messages.Interfaces;
-using TicketR.MessageBroker.Messages.Models;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces;
+using TicketR.MessageBroker.RabbitMQ.Messages.Interfaces;
 
 namespace TicketR.MessageBroker.RabbitMQ.Messages
 {
-    public class RabbitMQMessageBroker : IMessageBroker, IDisposable
+    public class RabbitMQMessageBroker : IRabbitMQMessageBroker, IDisposable
     {
         private readonly IRabbitMQConnection _rabbitMqConnection;
 
@@ -42,14 +42,14 @@ namespace TicketR.MessageBroker.RabbitMQ.Messages
 
         public void Subscribe<TMessage, TMessageIntegrationHandler>() 
             where TMessage : Message 
-            where TMessageIntegrationHandler : IIntegrationMessageHandler<TMessage>
+            where TMessageIntegrationHandler : IMessageHandler<TMessage>
         {
             throw new NotImplementedException();
         }
 
         public void UnSubscribe<TMessage, TMessageIntegrationHandler>() 
             where TMessage : Message 
-            where TMessageIntegrationHandler : IIntegrationMessageHandler<TMessage>
+            where TMessageIntegrationHandler : IMessageHandler<TMessage>
         {
             throw new NotImplementedException();
         }

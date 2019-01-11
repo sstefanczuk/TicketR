@@ -1,7 +1,7 @@
-﻿using TicketR.MessageBroker.Integrations.Interfaces;
-using TicketR.MessageBroker.Messages.Models;
+﻿using TicketR.MessageBroker.Infrastructure.Messages.Models;
+using TicketR.MessageBroker.Integrations.Interfaces;
 
-namespace TicketR.MessageBroker.Messages.Interfaces
+namespace TicketR.MessageBroker.Infrastructure.Messages.Interfaces
 {
     public interface IMessageBroker
     {
@@ -9,10 +9,10 @@ namespace TicketR.MessageBroker.Messages.Interfaces
 
         void Subscribe<TMessage, TMessageIntegrationHandler>()
             where TMessage : Message
-            where TMessageIntegrationHandler : IIntegrationMessageHandler<TMessage>;
+            where TMessageIntegrationHandler : IMessageHandler<TMessage>;
 
         void UnSubscribe<TMessage, TMessageIntegrationHandler>()
             where TMessage : Message
-            where TMessageIntegrationHandler : IIntegrationMessageHandler<TMessage>;
+            where TMessageIntegrationHandler : IMessageHandler<TMessage>;
     }
 }

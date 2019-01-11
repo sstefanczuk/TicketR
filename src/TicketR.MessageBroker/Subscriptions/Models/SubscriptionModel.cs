@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace TicketR.MessageBroker.Subscriptions.Models
+namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Models
 {
     public class SubscriptionModel
     {
