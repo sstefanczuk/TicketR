@@ -1,5 +1,4 @@
 ﻿using TicketR.MessageBroker.Infrastructure.Messages.Models;
-using TicketR.MessageBroker.Integrations.Interfaces;
 
 namespace TicketR.MessageBroker.Infrastructure.Messages.Interfaces
 {

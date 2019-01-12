@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TicketR.MessageBroker\TicketR.MessageBroker.Infrastructure.csproj" />
+    <ProjectReference Include="..\TicketR.MessageBroker.Infrastructure\TicketR.MessageBroker.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using TicketR.MessageBroker.Infrastructure.Messages.Interfaces;
 using TicketR.MessageBroker.Infrastructure.Messages.Models;
 using TicketR.MessageBroker.Infrastructure.Subscriptions.Models;
-using TicketR.MessageBroker.Integrations.Interfaces;
 
 namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Managers.Interfaces
 {

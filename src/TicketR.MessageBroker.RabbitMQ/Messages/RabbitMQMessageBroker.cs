@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
+using TicketR.MessageBroker.Infrastructure.Messages.Interfaces;
 using TicketR.MessageBroker.Infrastructure.Messages.Models;
-using TicketR.MessageBroker.Integrations.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Messages.Interfaces;
 

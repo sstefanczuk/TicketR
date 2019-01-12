@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TicketR.MessageBroker.Integrations.Interfaces;
+using TicketR.MessageBroker.Infrastructure.Messages.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Messages.Models;
 
 namespace TicketR.MessageBroker.RabbitMQ.Messages.Interfaces
