@@ -8,12 +8,12 @@ using TicketR.MessageBroker.Infrastructure.Subscriptions.Models;
 
 namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Managers
 {
-    public class MessageBrokerSubscriptionsManager : IMessageBrokerSubscriptionsManager
+    public class RabbitMQSubscriptionsManager : IRabbitMQSubscriptionsManager
     {
         private readonly Dictionary<string, List<SubscriptionModel>> _handlers;
         private readonly List<Type> _messageTypes;
 
-        public MessageBrokerSubscriptionsManager()
+        public RabbitMQSubscriptionsManager()
         {
             _handlers = new Dictionary<string, List<SubscriptionModel>>();
             _messageTypes = new List<Type>();

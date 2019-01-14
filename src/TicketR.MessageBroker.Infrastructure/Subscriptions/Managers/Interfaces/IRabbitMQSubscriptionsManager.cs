@@ -6,7 +6,7 @@ using TicketR.MessageBroker.Infrastructure.Subscriptions.Models;
 
 namespace TicketR.MessageBroker.Infrastructure.Subscriptions.Managers.Interfaces
 {
-    public interface IMessageBrokerSubscriptionsManager
+    public interface IRabbitMQSubscriptionsManager
     {
         bool IsEmpty { get; }
         event EventHandler<string> OnMessageRemoved;

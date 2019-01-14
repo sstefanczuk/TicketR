@@ -1,11 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TicketR.MessageBroker.Infrastructure.Messages.Models;
 
 namespace TicketR.MessageBroker.RabbitMQ.Messages.Models
 {
-    public class RabbitMQMessage : Message
+    public class RabbitMQMessage
     {
+        public RabbitMQMessage()
+        {
+            Id = Guid.NewGuid();
+            CreationDate = DateTime.UtcNow;
+        }
+
+        public Guid Id { get; }
+        public DateTime CreationDate { get; }
     }
 }

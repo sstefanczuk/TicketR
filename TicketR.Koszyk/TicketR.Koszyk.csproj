@@ -14,4 +14,10 @@
     <ProjectReference Include="..\src\TicketR.MessageBroker.RabbitMQ\TicketR.MessageBroker.RabbitMQ.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Http.Abstractions">
+      <HintPath>..\..\..\..\Users\wklodkowski\.nuget\packages\microsoft.aspnetcore.http.abstractions\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Http.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

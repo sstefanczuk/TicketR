@@ -10,8 +10,4 @@
     <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\TicketR.MessageBroker.Infrastructure\TicketR.MessageBroker.Infrastructure.csproj" />
-  </ItemGroup>
-
 </Project>

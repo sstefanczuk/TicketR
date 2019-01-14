@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TicketR.MessageBroker.Infrastructure.Messages.Interfaces;
+﻿using System.Threading.Tasks;
 using TicketR.MessageBroker.RabbitMQ.Messages.Models;
 
-namespace TicketR.MessageBroker.RabbitMQ.Messages.Interfaces
+namespace TicketR.MessageBroker.RabbitMQ.Messages.Handlers.Interfaces
 {
-    public interface IRabbitMQMessageHandler<in TMessage> : IMessageHandler<TMessage> where TMessage : RabbitMQMessage
+    public interface IRabbitMQMessageHandler<in TRabbitMQMessage>
+        where TRabbitMQMessage : RabbitMQMessage
     {
+        Task Handle(TRabbitMQMessage message);
     }
 }
