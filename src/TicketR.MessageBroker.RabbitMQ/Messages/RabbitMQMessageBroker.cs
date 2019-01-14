@@ -49,7 +49,7 @@ namespace TicketR.MessageBroker.RabbitMQ.Messages
                 var body = Encoding.UTF8.GetBytes(messageContent);
                 var properties = channel.CreateBasicProperties();
 
-                channel.BasicPublish(exchange: "QueueName",
+                channel.BasicPublish(exchange: "TicketR_MessageBroker",
                     routingKey: messageName,
                     mandatory: true,
                     basicProperties: properties,
@@ -174,7 +174,7 @@ namespace TicketR.MessageBroker.RabbitMQ.Messages
                         var integrationEvent = JsonConvert.DeserializeObject(message, messageType);
                         var handler = scope.ServiceProvider.GetService(subscription.HandlerType);
                         var concreteType = typeof(IRabbitMQMessageHandler<>).MakeGenericType(messageType);
-                        await (Task)concreteType.GetMethod("Handle")?.Invoke(handler, new object[] { integrationEvent });
+                        await (Task)concreteType.GetMethod("Handle")?.Invoke(handler, new [] { integrationEvent });
                     }
                 }
             }

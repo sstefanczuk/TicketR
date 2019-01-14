@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TicketR.Koszyk.Models
+﻿namespace TicketR.Cart.Models
 {
     public class Product
     {

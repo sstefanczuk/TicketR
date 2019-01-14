@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.MessageBroker.Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.MessageBroker.RabbitMQ", "TicketR.MessageBroker.RabbitMQ\TicketR.MessageBroker.RabbitMQ.csproj", "{64AAF380-B1DE-4EC8-807F-062CAFF3AF9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Koszyk", "..\TicketR.Koszyk\TicketR.Koszyk.csproj", "{0B9AC8A3-0188-483F-8F5F-4B1DBB0FDB5B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Cart", "..\TicketR.Koszyk\TicketR.Cart.csproj", "{0B9AC8A3-0188-483F-8F5F-4B1DBB0FDB5B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Magazyn", "TicketR.Magazyn\TicketR.Magazyn.csproj", "{920018FD-5882-4F74-8D16-B388BB547557}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Store", "TicketR.Magazyn\TicketR.Store.csproj", "{920018FD-5882-4F74-8D16-B388BB547557}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

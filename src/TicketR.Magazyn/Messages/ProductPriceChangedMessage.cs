@@ -1,10 +1,13 @@
-﻿using TicketR.MessageBroker.RabbitMQ.Messages.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using TicketR.MessageBroker.RabbitMQ.Messages.Models;
 
-namespace TicketR.Cart.Message
+namespace TicketR.Store.Messages
 {
     public class ProductPriceChangedMessage : RabbitMQMessage
     {
-        public int ProductId { get; } 
+        public int ProductId { get; }
 
         public decimal NewPrice { get; }
 

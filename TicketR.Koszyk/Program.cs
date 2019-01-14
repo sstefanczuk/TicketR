@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Client;
-using TicketR.Koszyk.Message;
-using TicketR.Koszyk.MessageHandler;
-using TicketR.Koszyk.Services;
-using TicketR.Koszyk.Services.Interfaces;
+using TicketR.Cart.Message;
+using TicketR.Cart.MessageHandlers;
+using TicketR.Cart.Services;
+using TicketR.Cart.Services.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Messages;
@@ -14,7 +13,7 @@ using TicketR.MessageBroker.RabbitMQ.Messages.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Subscriptions.Managers;
 using TicketR.MessageBroker.RabbitMQ.Subscriptions.Managers.Interfaces;
 
-namespace TicketR.Koszyk
+namespace TicketR.Cart
 {
     class Program
     {
@@ -22,15 +21,21 @@ namespace TicketR.Koszyk
         {
             var services = new ServiceCollection()
                 .AddScoped<ICartService, CartService>();
+            IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
+            Configuration = configurationBuilder.Build();
 
             ConfigurRabbitMq(services);
             RegisterRabbitMQ(services);
             ConfigureMessageBroker(services);
 
+
+            var cartService = services.BuildServiceProvider().GetService<ICartService>();
+            cartService.ChangePrice(1, 23m, 10m);
+
             Console.WriteLine("Hello World!");
         }
 
-        public static IConfiguration Configuration { get; }
+        public static IConfiguration Configuration { get; private set; }
 
         public static void ConfigurRabbitMq(IServiceCollection services)
         {
@@ -38,7 +43,7 @@ namespace TicketR.Koszyk
             {
                 var factory = new ConnectionFactory()
                 {
-                    HostName = Configuration["EventBusConnection"]
+                    HostName = "localhost"//Configuration["EventBusConnection"]
                 };
 
                 if (!string.IsNullOrEmpty(Configuration["EventBusUserName"]))
@@ -57,7 +62,7 @@ namespace TicketR.Koszyk
 
         public static void RegisterRabbitMQ(IServiceCollection services)
         {
-            var queueName = Configuration["SubscriptionClientName"];
+            var queueName = "koszyk_queue";//Configuration["SubscriptionClientName"];
             services.AddSingleton<IRabbitMQSubscriptionManager, RabbitMQSubscriptionManager>();
             services.AddSingleton<IRabbitMQMessageBroker, RabbitMQMessageBroker>(sp =>
             {
@@ -67,6 +72,8 @@ namespace TicketR.Koszyk
 
                 return new RabbitMQMessageBroker(rabbitMqConnection, rabbitMqSubscriptionManager, serviceScopeFactory, queueName);
             });
+
+            services.AddTransient<ProductPriceChangedMessageHandler>();
         }
 
         private static void ConfigureMessageBroker(IServiceCollection services)
