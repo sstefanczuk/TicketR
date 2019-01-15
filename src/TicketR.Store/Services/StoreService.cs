@@ -8,7 +8,7 @@ namespace TicketR.Store.Services
 {
     public class StoreService : IStoreService
     {
-        public void GetPrice(ProductPriceChangedMessage message)
+        public void SavePrice(ProductPriceChangedMessage message)
         {
             Console.WriteLine(message.NewPrice);
         }

@@ -9,7 +9,8 @@ namespace TicketR.Cart.MessageHandlers
     {
         public async Task Handle(ProductPriceChangedMessage message)
         {
-            Console.WriteLine(message.NewPrice);
+            //Business Logic
+
             await Task.CompletedTask;
         }
     }

@@ -15,13 +15,10 @@ namespace TicketR.Cart.Services
 
         public void ChangePrice(int productId, decimal newPrice, decimal oldPrice)
         {
-            var message = new ProductPriceChangedMessage(1, 34m, 24m);
+            //Business logic
 
-            for (int i = 0; i < 100; i++)
-            {
-                
-                _messageBroker.Publish(message);
-            }           
+            var message = new ProductPriceChangedMessage(1, 34m, 24m);
+            _messageBroker.Publish(message);
         }
     }
 }

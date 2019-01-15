@@ -7,6 +7,6 @@ namespace TicketR.Store.Services.Interfaces
 {
     public interface IStoreService
     {
-        void GetPrice(ProductPriceChangedMessage message);
+        void SavePrice(ProductPriceChangedMessage message);
     }
 }

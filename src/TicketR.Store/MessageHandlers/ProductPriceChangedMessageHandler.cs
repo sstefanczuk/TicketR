@@ -19,8 +19,10 @@ namespace TicketR.Store.MessageHandlers
 
         public async Task Handle(ProductPriceChangedMessage message)
         {
-            _storeService.GetPrice(message);
-            Console.WriteLine(message.NewPrice);
+            _storeService.SavePrice(message);
+
+            //Bussines Logic like update database etc.
+
             await Task.CompletedTask;
         }
     }

@@ -13,7 +13,7 @@ using TicketR.Store.Messages;
 using TicketR.Store.Services;
 using TicketR.Store.Services.Interfaces;
 
-namespace TicketR.Magazyn
+namespace TicketR.Store
 {
     class Program
     {
