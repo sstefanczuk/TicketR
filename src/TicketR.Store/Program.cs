@@ -26,7 +26,7 @@ namespace TicketR.Magazyn
 
             ConfigurRabbitMq(services);
             RegisterRabbitMQ(services);
-            ConfigureMessageBroker(services);
+            RegisterRabbitMQHandlers(services);
 
             Console.WriteLine("Hello World!");
         }
@@ -76,7 +76,7 @@ namespace TicketR.Magazyn
             });
         }
 
-        private static void ConfigureMessageBroker(IServiceCollection services)
+        private static void RegisterRabbitMQHandlers(IServiceCollection services)
         {
             var serviceProvider = services.BuildServiceProvider();
             var messageBroker = serviceProvider.GetService<IRabbitMQMessageBroker>();

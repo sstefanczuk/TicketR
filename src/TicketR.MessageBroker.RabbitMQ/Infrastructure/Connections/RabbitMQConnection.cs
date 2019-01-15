@@ -11,7 +11,7 @@ namespace TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections
     public class RabbitMQConnection : IRabbitMQConnection
     {
         private readonly IConnectionFactory _connectionFactory;
-        IConnection _connection;
+        private IConnection _connection;
         private bool _disposed;
         private readonly object sync_root = new object();
 

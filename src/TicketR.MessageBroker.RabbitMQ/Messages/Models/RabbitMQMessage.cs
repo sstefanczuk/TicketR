@@ -7,10 +7,10 @@ namespace TicketR.MessageBroker.RabbitMQ.Messages.Models
         public RabbitMQMessage()
         {
             Id = Guid.NewGuid();
-            CreationDate = DateTime.UtcNow;
+            CreationMessageDate = DateTime.UtcNow;
         }
 
         public Guid Id { get; }
-        public DateTime CreationDate { get; }
+        public DateTime CreationMessageDate { get; }
     }
 }
