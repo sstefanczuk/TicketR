@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TicketR.MessageBroker.RabbitMQ.Messages.Handlers.Interfaces;
-using TicketR.MessageBroker.RabbitMQ.Messages.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Messages.Models;
 using TicketR.MessageBroker.RabbitMQ.Subscriptions.Managers.Interfaces;
 using TicketR.MessageBroker.RabbitMQ.Subscriptions.Models;

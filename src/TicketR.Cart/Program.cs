@@ -26,6 +26,7 @@ namespace TicketR.Cart
                 .AddScoped<ICartService, CartService>();
             IConfigurationBuilder configurationBuilder = new ConfigurationBuilder();
             Configuration = configurationBuilder
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .Build();
 
             //services.Configure<RabbitMQConnectionModel>(Configuration.GetSection("RabbitConfig").Bind<RabbitMQConnectionModel>());
@@ -80,7 +81,8 @@ namespace TicketR.Cart
                 var serviceScopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
 
                 return new RabbitMQMessageBroker(rabbitMqConnection, rabbitMqSubscriptionManager, serviceScopeFactory, connectionConfig.RabbitServiceQueue);
-            });          
+            });
+            services.AddTransient<ProductPriceChangedMessageHandler>();
         }
 
         private static void ConfigureRabbitMQHandlers(IServiceCollection services)
@@ -88,7 +90,7 @@ namespace TicketR.Cart
             var serviceProvider = services.BuildServiceProvider();
             var messageBroker = serviceProvider.GetService<IRabbitMQMessageBroker>();
 
-            services.AddTransient<ProductPriceChangedMessageHandler>();
+            
             messageBroker.Subscribe<ProductPriceChangedMessage, ProductPriceChangedMessageHandler>();
         }
     }

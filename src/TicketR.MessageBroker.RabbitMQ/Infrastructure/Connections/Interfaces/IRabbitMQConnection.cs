@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using RabbitMQ.Client;
 
 namespace TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces

@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces;

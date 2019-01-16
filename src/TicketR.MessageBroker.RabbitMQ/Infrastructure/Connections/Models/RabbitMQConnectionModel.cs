@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Models
+﻿namespace TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Models
 {
     public class RabbitMQConnectionModel
     {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using TicketR.MessageBroker.RabbitMQ.Infrastructure.Connections.Interfaces;
