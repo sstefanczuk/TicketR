@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using TicketR.Common.Models.Exceptions;
 
 namespace TicketR.Common.Middleware
 {
@@ -25,7 +26,7 @@ namespace TicketR.Common.Middleware
             {
                 await request(httpContext);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex, ex.Message);
                 await HandleExceptionAsync(httpContext, ex);
@@ -42,6 +43,11 @@ namespace TicketR.Common.Middleware
             {
                 httpStatusCode = HttpStatusCode.Unauthorized;
                 errorCode = nameof(HttpStatusCode.Unauthorized);
+            }
+            else if (ex is BadRequestException)
+            {
+                httpStatusCode = HttpStatusCode.BadRequest;
+                errorCode = nameof(HttpStatusCode.BadRequest);
             }
 
             context.Response.ContentType = "application/json";

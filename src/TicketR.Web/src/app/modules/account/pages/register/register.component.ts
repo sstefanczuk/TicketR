@@ -27,8 +27,7 @@ export class RegisterComponent implements OnInit {
       },
         (ex: HttpErrorResponse) => {
           console.log(ex);
-
-          this.errors = ex.error;
+          this.errors = (ex.error as string).split(',');
         });
   }
 }

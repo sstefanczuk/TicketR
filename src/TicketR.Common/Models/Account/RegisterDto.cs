@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using TicketR.Common.Core.Abstract;
 
 namespace TicketR.Common.Models.Account
 {
-    public class RegisterDto : IRequest<IdentityResult>
+    public class RegisterCommand : ICommand<ApiResponse>
     {
         [Required]
         [EmailAddress]

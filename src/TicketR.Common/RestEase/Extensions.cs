@@ -45,7 +45,8 @@ namespace TicketR.Common.RestEase
             services.AddTransient<T>(c => new RestClient(c.GetService<IHttpClientFactory>()
                 .CreateClient(clientName))
             {
-                RequestQueryParamSerializer = new QueryParamSerializer()
+                RequestQueryParamSerializer = new QueryParamSerializer(),
+                
             }
                 .For<T>());
         }

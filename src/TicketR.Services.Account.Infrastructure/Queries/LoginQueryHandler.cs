@@ -3,13 +3,14 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using TicketR.Common.Models;
 using TicketR.Common.Models.Account;
 using TicketR.Services.Account.Infrastructure.Auth;
 using TicketR.Services.Account.Infrastructure.Models;
 
 namespace TicketR.Services.Account.Infrastructure.Commands
 {
-    public class LoginQueryHandler : IRequestHandler<LoginDto, AuthData>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, ApiResponse<AuthData>>
     {
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
@@ -22,7 +23,7 @@ namespace TicketR.Services.Account.Infrastructure.Commands
             this.jwtService = jwtService;
         }
 
-        public async Task<AuthData> Handle(LoginDto request, CancellationToken cancellationToken)
+        public async Task<ApiResponse<AuthData>> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
             var user = await userManager.FindByEmailAsync(request.Email);
             if (user != null)
@@ -31,11 +32,19 @@ namespace TicketR.Services.Account.Infrastructure.Commands
                 if (result.Succeeded)
                 {
                     var claims = await jwtService.GetValidClaims(user);
-                    return jwtService.GenerateJwt(claims);
+                    return new ApiResponse<AuthData>
+                    {
+                        Content = jwtService.GenerateJwt(claims),
+                        Status = System.Net.HttpStatusCode.OK,
+                    };
                 }
             }
 
-            throw new UnauthorizedAccessException();
+            return new ApiResponse<AuthData>
+            {
+                Message = "Invalid username or password",
+                Status = System.Net.HttpStatusCode.Unauthorized,
+            };
         }
     }
 }

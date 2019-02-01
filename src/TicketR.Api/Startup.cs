@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using TicketR.Api.Services;
 using TicketR.Common.Auth;
+using TicketR.Common.Core;
 using TicketR.Common.Middleware;
 using TicketR.Common.RestEase;
 
@@ -36,6 +37,7 @@ namespace TicketR.Api
                 options.SuppressModelStateInvalidFilter = true;
             });
             services.AddJwtSecurity(Configuration);
+            services.RegisterBus();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
