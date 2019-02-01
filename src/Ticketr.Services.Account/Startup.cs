@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TicketR.Common.Middleware;
-using TicketR.Services.Account.Infrastructure.Data;
-using TicketR.Services.Account.Infrastructure.Extensions;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Data;
+using TicketR.Services.Account.Extensions;
+using TicketR.Services.Account.Models;
 using TicketR.Common.Auth;
 using TicketR.Common.Core;
 

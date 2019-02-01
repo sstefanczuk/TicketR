@@ -5,9 +5,9 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using TicketR.Common.Models.Account;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Models;
 
-namespace TicketR.Services.Account.Infrastructure.Auth
+namespace TicketR.Services.Account.Auth
 {
     public interface IJwtService
     {

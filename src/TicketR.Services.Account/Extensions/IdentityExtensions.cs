@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using TicketR.Services.Account.Infrastructure.Data;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Data;
+using TicketR.Services.Account.Models;
 using Microsoft.EntityFrameworkCore;
-using TicketR.Services.Account.Infrastructure.Auth;
+using TicketR.Services.Account.Auth;
 using System.Reflection;
 using MediatR;
 
-namespace TicketR.Services.Account.Infrastructure.Extensions
+namespace TicketR.Services.Account.Extensions
 {
     public static class IdentityExtensions
     {

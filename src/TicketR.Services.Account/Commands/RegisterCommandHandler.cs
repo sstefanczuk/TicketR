@@ -8,9 +8,9 @@ using TicketR.Common.Core.Abstract;
 using TicketR.Common.Models;
 using TicketR.Common.Models.Account;
 using TicketR.Common.Models.Exceptions;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Models;
 
-namespace TicketR.Services.Account.Infrastructure.Commands
+namespace TicketR.Services.Account.Commands
 {
     public class RegisterCommandHandler : ICommandHandler<RegisterCommand, ApiResponse>
     {

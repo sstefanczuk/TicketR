@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using TicketR.Common.Auth;
 using TicketR.Common.Models.Account;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Models;
 
-namespace TicketR.Services.Account.Infrastructure.Auth
+namespace TicketR.Services.Account.Auth
 {
     public class JwtService : IJwtService
     {

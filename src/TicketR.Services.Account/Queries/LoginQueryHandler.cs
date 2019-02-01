@@ -5,10 +5,10 @@ using System.Threading;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
 using TicketR.Common.Models.Account;
-using TicketR.Services.Account.Infrastructure.Auth;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Auth;
+using TicketR.Services.Account.Models;
 
-namespace TicketR.Services.Account.Infrastructure.Commands
+namespace TicketR.Services.Account.Commands
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, ApiResponse<AuthData>>
     {
