@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TicketR.Common.Models;
 using TicketR.Common.Models.Account;
@@ -19,11 +20,11 @@ namespace TicketR.Api.Services
 
         [AllowAnyStatusCode]
         [Post("api/login")]
-        Task<Response<AuthData>> LoginAsync([Body]LoginDto loginDto);
+        Task<ApiResponse<AuthData>> LoginAsync([Body]LoginQuery loginDto);
 
         [AllowAnyStatusCode]
         [Post("api/register")]
-        Task<Response<IdentityResult>> RegisterAsync([Body]RegisterDto registerDto);
+        Task<HttpResponseMessage> RegisterAsync([Body]RegisterCommand registerDto);
 
         [AllowAnyStatusCode]
         [Post("api/forgotpassword")]

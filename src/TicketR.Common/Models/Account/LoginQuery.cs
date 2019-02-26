@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TicketR.Common.Models.Account
 {
-    public class LoginDto : IRequest<AuthData>
+    public class LoginQuery : IRequest<ApiResponse<AuthData>>
     {
         [Required]
         [DataType(DataType.EmailAddress)]

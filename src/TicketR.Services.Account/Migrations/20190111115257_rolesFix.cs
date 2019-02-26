@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TicketR.Services.Account.Infrastructure.Migrations
+namespace TicketR.Services.Account.Migrations
 {
     public partial class rolesFix : Migration
     {

@@ -22,35 +22,30 @@ namespace TicketR.Api.Controllers
             this.accountService = accountService;
         }
 
-        [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody]RegisterDto registerDto)
+        public async Task<IActionResult> Register([FromBody]RegisterCommand registerDto)
         {
             if (!ModelState.IsValid) return new BadRequestObjectResult(ModelState.Values.ToList().SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
 
-            using (var response = await this.accountService.RegisterAsync(registerDto))
-            {
-                var result = response.GetContent();
-                if (result.Errors.Any()) return new BadRequestObjectResult(result.Errors.Select(x => x.Description));
-            }
-
-            return Ok();
+            var response = await this.accountService.RegisterAsync(registerDto);
+            
+            if (response.IsSuccessStatusCode) return Ok();
+            return new BadRequestObjectResult(response.Content.ReadAsStringAsync().Result);
         }
 
         [ProducesResponseType(typeof(AuthData), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(IEnumerable<string>), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(string), (int)HttpStatusCode.BadRequest)]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody]LoginDto loginDto)
+        public async Task<IActionResult> Login([FromBody]LoginQuery loginDto)
         {
             if (!ModelState.IsValid) return new BadRequestObjectResult(ModelState.Values.ToList().SelectMany(x => x.Errors).Select(x => x.ErrorMessage));
 
-            using (var response = await this.accountService.LoginAsync(loginDto))
-            {
-                if (response.ResponseMessage.IsSuccessStatusCode) return Ok(response.GetContent());
-            }
+            var response = await this.accountService.LoginAsync(loginDto);
 
-            return new BadRequestObjectResult(new List<string> { "Invalid username or password" });
+            if (response.Status == HttpStatusCode.OK) return Ok(response.Content);
+            return new BadRequestObjectResult("Invalid username or password");
         }
     }
 }

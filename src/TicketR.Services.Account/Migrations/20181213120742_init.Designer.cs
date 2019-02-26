@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TicketR.Services.Account.Infrastructure.Data;
+using TicketR.Services.Account.Data;
 
-namespace TicketR.Services.Account.Infrastructure.Migrations
+namespace TicketR.Services.Account.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    [Migration("20190111115257_rolesFix")]
-    partial class rolesFix
+    [Migration("20181213120742_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,12 +43,6 @@ namespace TicketR.Services.Account.Infrastructure.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
-
-                    b.HasData(
-                        new { Id = "c100691f-2893-4cb7-86a8-e1347479da4e", ConcurrencyStamp = "c46f63d2-a271-4afa-b4f0-08844c56f15d", Name = "Admin", NormalizedName = "ADMIN" },
-                        new { Id = "b79926e0-fcc2-4ca7-a04b-bdec992773f6", ConcurrencyStamp = "d1a8c93c-0da2-43e0-a64a-f7cdbb2a4010", Name = "Organiser", NormalizedName = "ORGANISER" },
-                        new { Id = "2aaefccc-0528-4ec6-965d-1458dfe55fb1", ConcurrencyStamp = "ed132580-982a-4af2-b620-9f6e12f1f71e", Name = "Customer", NormalizedName = "CUSTOMER" }
-                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using TicketR.Services.Account.Infrastructure.Models;
+using TicketR.Services.Account.Models;
 
-namespace TicketR.Services.Account.Infrastructure.Data
+namespace TicketR.Services.Account.Data
 {
     public class AccountDbContext : IdentityDbContext<AppUser>
     {

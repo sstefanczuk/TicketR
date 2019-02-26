@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TicketR.Services.Account.Infrastructure.Data;
+using TicketR.Services.Account.Data;
 
-namespace TicketR.Services.Account.Infrastructure.Migrations
+namespace TicketR.Services.Account.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
     partial class AccountDbContextModelSnapshot : ModelSnapshot

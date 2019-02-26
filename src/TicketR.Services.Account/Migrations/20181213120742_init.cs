@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TicketR.Services.Account.Infrastructure.Migrations
+namespace TicketR.Services.Account.Migrations
 {
     public partial class init : Migration
     {

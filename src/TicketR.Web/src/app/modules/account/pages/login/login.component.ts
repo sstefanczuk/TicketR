@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
           this.accountService.setToken(response.body);
         }
       },
-        (ex: HttpErrorResponse) => {
-          this.errors = ex.error;
+        (ex: HttpErrorResponse) => {          console.log(ex);
+
+          this.errors = (ex.error as string).split(',');
         });
   }
 }
