@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TicketR.Domain\TicketR.Domain.csproj" />
+    <ProjectReference Include="..\TicketR.Application\TicketR.Application.csproj" />
+    <ProjectReference Include="..\TicketR.Infrastructure\TicketR.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

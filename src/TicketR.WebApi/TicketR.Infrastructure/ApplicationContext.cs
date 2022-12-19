@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TicketR.Domain.Entities;
 
-namespace TicketR.Domain
+namespace TicketR.Infrastructure
 {
     internal class ApplicationContext : DbContext
     {

@@ -2,13 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TicketR.Domain
+namespace TicketR.Infrastructure
 {
-    public static class IoCExtensions
+    public static class DependencyInjection
     {
-        public static void AddDomain(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationContext>(options =>
+            return services.AddDbContext<ApplicationContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("Default"));
             });

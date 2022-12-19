@@ -5,7 +5,11 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.WebApi", "TicketR.WebApi\TicketR.WebApi.csproj", "{CF1817A7-472B-43EB-8BE7-202F851B2E9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Domain", "TicketR.Domain\TicketR.Domain.csproj", "{71179DAA-249D-49F8-AAE1-4FED14501C05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Infrastructure", "TicketR.Infrastructure\TicketR.Infrastructure.csproj", "{71179DAA-249D-49F8-AAE1-4FED14501C05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.Application", "TicketR.Application\TicketR.Application.csproj", "{75379972-52E5-4503-8920-15B9230D7847}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Domain", "TicketR.Domain\TicketR.Domain.csproj", "{5E5EAF26-3892-4132-9989-0EC8515FF629}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75379972-52E5-4503-8920-15B9230D7847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75379972-52E5-4503-8920-15B9230D7847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75379972-52E5-4503-8920-15B9230D7847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75379972-52E5-4503-8920-15B9230D7847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E5EAF26-3892-4132-9989-0EC8515FF629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E5EAF26-3892-4132-9989-0EC8515FF629}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E5EAF26-3892-4132-9989-0EC8515FF629}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E5EAF26-3892-4132-9989-0EC8515FF629}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

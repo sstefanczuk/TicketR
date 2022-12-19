@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace TicketR.Domain.Migrations
+namespace TicketR.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

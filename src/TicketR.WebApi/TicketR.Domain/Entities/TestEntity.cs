@@ -1,6 +1,6 @@
-﻿namespace TicketR.Domain
+﻿namespace TicketR.Domain.Entities
 {
-    internal class TestEntity
+    public class TestEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
