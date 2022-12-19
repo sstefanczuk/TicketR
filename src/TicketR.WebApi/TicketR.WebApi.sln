@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.WebApi", "TicketR.WebApi\TicketR.WebApi.csproj", "{CF1817A7-472B-43EB-8BE7-202F851B2E9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TicketR.WebApi", "TicketR.WebApi\TicketR.WebApi.csproj", "{CF1817A7-472B-43EB-8BE7-202F851B2E9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicketR.Domain", "TicketR.Domain\TicketR.Domain.csproj", "{71179DAA-249D-49F8-AAE1-4FED14501C05}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{CF1817A7-472B-43EB-8BE7-202F851B2E9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF1817A7-472B-43EB-8BE7-202F851B2E9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF1817A7-472B-43EB-8BE7-202F851B2E9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71179DAA-249D-49F8-AAE1-4FED14501C05}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
